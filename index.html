@@ -70,6 +70,57 @@
 
     .nav-links a:hover { border-color: var(--red); }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--black);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 3px solid var(--black);
+        z-index: 99;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li { border-top: 1px solid var(--black); }
+
+      .nav-links a {
+        display: block;
+        padding: 14px 32px;
+        border-bottom: none;
+      }
+
+      .nav-links a:hover { background: var(--cream-dark); border-bottom: none; }
+    }
+
     /* TICKER */
     .ticker {
       background: var(--red);
@@ -84,7 +135,7 @@
 
     .ticker-inner {
       display: inline-block;
-      animation: ticker 24s linear infinite;
+      animation: ticker 14s linear infinite;
       padding-left: 100%;
     }
 
@@ -430,7 +481,10 @@
   <!-- NAV -->
   <nav>
     <a href="/" class="logo">J<span>B</span>REEZY<br>BABY</a>
-    <ul class="nav-links">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#cocktails">Cocktails</a></li>
       <li><a href="#blues">Blues Jams</a></li>
       <li><a href="#stage">Stage Time</a></li>
@@ -443,7 +497,7 @@
   <!-- TICKER -->
   <div class="ticker">
     <span class="ticker-inner">
-      ★ cocktail experiments ★ blues jams every month ★ bread that slaps ★ stand-up stories ★ small business adventures ★ AI-powered apps ★ creative chaos ★ Manassas VA ★ welcome to the universe of J Breezy Baby &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      FEEL THE BREEZE BABY &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 48 20" style="display:inline-block;vertical-align:middle"><rect x="2" y="4" width="32" height="3" fill="#f5f0e8"/><rect x="2" y="10" width="24" height="3" fill="#f5f0e8" opacity="0.7"/><rect x="2" y="16" width="16" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="36" y="4" width="4" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="28" y="10" width="4" height="3" fill="#f5f0e8" opacity="0.3"/></svg>&nbsp;&nbsp; FEEL THE BREEZE BABY &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 48 20" style="display:inline-block;vertical-align:middle"><rect x="2" y="4" width="32" height="3" fill="#f5f0e8"/><rect x="2" y="10" width="24" height="3" fill="#f5f0e8" opacity="0.7"/><rect x="2" y="16" width="16" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="36" y="4" width="4" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="28" y="10" width="4" height="3" fill="#f5f0e8" opacity="0.3"/></svg>&nbsp;&nbsp; FEEL THE BREEZE BABY &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 48 20" style="display:inline-block;vertical-align:middle"><rect x="2" y="4" width="32" height="3" fill="#f5f0e8"/><rect x="2" y="10" width="24" height="3" fill="#f5f0e8" opacity="0.7"/><rect x="2" y="16" width="16" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="36" y="4" width="4" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="28" y="10" width="4" height="3" fill="#f5f0e8" opacity="0.3"/></svg>&nbsp;&nbsp;&nbsp;&nbsp;
     </span>
   </div>
 
@@ -462,7 +516,7 @@
         <span class="tag">Baker</span>
         <span class="tag">Builder</span>
       </div>
-      <p class="hero-sub">Cocktails, bread, blues music, stand-up, creative writing, AI experiments, and a small business built with love. This is the whole person — not the resume.</p>
+
     </div>
     <div class="hero-right">
       <div class="pixel-grid" id="pixelGrid"></div>
@@ -593,13 +647,11 @@
     <div>
       <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
     </div>
-    <div class="footer-bio">
-      Cocktails, bread, blues music, stand-up comedy, creative writing, AI experiments, and a small business. Based in Manassas, VA. Always making something.
-    </div>
+
     <div class="footer-links">
       <h4>► Find Me</h4>
       <ul>
-        <li><a href="https://linkedin.com/in/jpcalabrese" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/james-calabrese/" target="_blank">LinkedIn</a></li>
         <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin Play</a></li>
         <li><a href="mailto:hello@jpcalabrese.com">Email Me</a></li>
         <li><a href="#">Book Time With Me</a></li>
@@ -612,6 +664,20 @@
   </div>
 
   <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
     // Pixel grid
     const grid = document.getElementById('pixelGrid');
     for (let i = 0; i < 240; i++) {
