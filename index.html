@@ -531,7 +531,7 @@
     <div class="cards-section-label">► SELECT YOUR CARD</div>
     <div class="cards-grid">
 
-      <a class="card" href="#cocktails" id="cocktails">
+      <a class="card wip-card" href="#" data-wip="true" id="cocktails">
         <div class="card-header">
           <div class="card-name">COCKTAIL<br>LAB</div>
           <div class="card-hp">HP 94</div>
@@ -549,7 +549,7 @@
         <div class="card-footer"><span class="card-rarity">◆ RARE</span><span class="card-num">001/006</span></div>
       </a>
 
-      <a class="card" href="#blues" id="blues">
+      <a class="card wip-card" href="#" data-wip="true" id="blues">
         <div class="card-header">
           <div class="card-name">BLUES<br>JAMS</div>
           <div class="card-hp">HP 88</div>
@@ -567,7 +567,7 @@
         <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">002/006</span></div>
       </a>
 
-      <a class="card" href="#stage" id="stage">
+      <a class="card wip-card" href="#" data-wip="true" id="stage">
         <div class="card-header">
           <div class="card-name">STAGE<br>TIME</div>
           <div class="card-hp">HP 91</div>
@@ -585,7 +585,7 @@
         <div class="card-footer"><span class="card-rarity">◆◆◆ LEGENDARY</span><span class="card-num">003/006</span></div>
       </a>
 
-      <a class="card" href="#bread" id="bread">
+      <a class="card wip-card" href="#" data-wip="true" id="bread">
         <div class="card-header">
           <div class="card-name">BREAD<br>LAB</div>
           <div class="card-hp">HP 76</div>
@@ -621,7 +621,7 @@
         <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">005/006</span></div>
       </a>
 
-      <a class="card" href="#lab" id="lab">
+      <a class="card wip-card" href="#" data-wip="true" id="lab">
         <div class="card-header">
           <div class="card-name">THE<br>LAB</div>
           <div class="card-hp">HP 99</div>
@@ -642,7 +642,26 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- NEDRY MODAL -->
+  <div id="nedryModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;">
+    <div style="background:#f5f0e8;border:4px solid #1a1a1a;max-width:380px;width:90%;position:relative;box-shadow:8px 8px 0 #1a1a1a;">
+      <div style="background:#1a1a1a;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-family:'Press Start 2P',monospace;font-size:7px;color:#f5f0e8;">SYSTEM ACCESS DENIED</span>
+        <span style="font-family:'Press Start 2P',monospace;font-size:7px;color:#e03c1f;">v4.1.1</span>
+      </div>
+      <div style="padding:24px;text-align:center;">
+        <canvas id="nedryCanvas" width="120" height="120" style="image-rendering:pixelated;display:block;margin:0 auto 20px;"></canvas>
+        <p style="font-family:'Press Start 2P',monospace;font-size:10px;color:#e03c1f;line-height:1.8;margin-bottom:8px;">AH AH AH!</p>
+        <p style="font-family:'Press Start 2P',monospace;font-size:7px;color:#1a1a1a;line-height:1.9;margin-bottom:24px;">YOU DIDN'T SAY<br>THE MAGIC WORD.</p>
+        <div style="display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:16px;">
+          <input id="magicInput" type="text" placeholder="magic word..." style="font-family:'Press Start 2P',monospace;font-size:7px;padding:10px 12px;border:3px solid #1a1a1a;background:#f5f0e8;width:160px;outline:none;">
+          <button id="magicSubmit" style="font-family:'Press Start 2P',monospace;font-size:7px;padding:10px 12px;background:#1a1a1a;color:#f5f0e8;border:3px solid #1a1a1a;cursor:pointer;">GO</button>
+        </div>
+        <p id="magicHint" style="font-family:'Press Start 2P',monospace;font-size:6px;color:#888;line-height:1.8;min-height:20px;"></p>
+        <button id="nedryClose" style="margin-top:16px;font-family:'Press Start 2P',monospace;font-size:6px;padding:8px 16px;background:transparent;border:2px solid #888;color:#888;cursor:pointer;">LEAVE THIS PLACE</button>
+      </div>
+    </div>
+  </div>
   <footer>
     <div>
       <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
@@ -652,9 +671,6 @@
       <h4>► Find Me</h4>
       <ul>
         <li><a href="https://www.linkedin.com/in/james-calabrese/" target="_blank">LinkedIn</a></li>
-        <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin Play</a></li>
-        <li><a href="mailto:hello@jpcalabrese.com">Email Me</a></li>
-        <li><a href="#">Book Time With Me</a></li>
       </ul>
     </div>
   </footer>
@@ -677,6 +693,129 @@
         navLinks.classList.remove('open');
       });
     });
+
+    // Nedry modal
+    const modal = document.getElementById('nedryModal');
+    const magicInput = document.getElementById('magicInput');
+    const magicHint = document.getElementById('magicHint');
+    const hints = [
+      "nope. try again.",
+      "still no.",
+      "not even close.",
+      "ah ah ah...",
+      "hint: it's what breezy babies say.",
+      "seriously though.",
+      "you're embarrassing yourself.",
+      "nedry is judging you.",
+    ];
+    let hintIndex = 0;
+
+    document.querySelectorAll('.wip-card').forEach(card => {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        hintIndex = 0;
+        magicHint.textContent = '';
+        magicInput.value = '';
+        modal.style.display = 'flex';
+        drawNedry();
+        setTimeout(() => magicInput.focus(), 50);
+      });
+    });
+
+    document.getElementById('nedryClose').addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    function checkMagicWord() {
+      const val = magicInput.value.trim().toLowerCase();
+      if (val === 'please' || val === 'feel the breeze baby' || val === 'breeze') {
+        magicHint.style.color = '#1d9e75';
+        magicHint.textContent = '✓ access granted... just kidding. coming soon!';
+        magicInput.value = '';
+        setTimeout(() => { modal.style.display = 'none'; magicHint.style.color = '#888'; }, 2000);
+      } else {
+        magicHint.style.color = '#e03c1f';
+        magicHint.textContent = hints[Math.min(hintIndex, hints.length - 1)];
+        hintIndex++;
+        magicInput.value = '';
+        magicInput.focus();
+      }
+    }
+
+    document.getElementById('magicSubmit').addEventListener('click', checkMagicWord);
+    magicInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkMagicWord(); });
+
+    function drawNedry() {
+      const c = document.getElementById('nedryCanvas');
+      if (!c) return;
+      const ctx = c.getContext('2d');
+      const p = 6;
+      ctx.clearRect(0, 0, 120, 120);
+
+      const face = [
+        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
+      ];
+
+      // skin
+      ctx.fillStyle = '#d4956a';
+      face.forEach((row, r) => row.forEach((v, c2) => {
+        if (v) ctx.fillRect(c2 * p, r * p + 4, p, p);
+      }));
+
+      // hair
+      ctx.fillStyle = '#3a2a1a';
+      [[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[2,1],[11,1]].forEach(([x,y]) => ctx.fillRect(x*p, y*p+4, p, p));
+
+      // eyes
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(3*p, 2*p+4, p*2, p);
+      ctx.fillRect(8*p, 2*p+4, p*2, p);
+
+      // glasses
+      ctx.fillStyle = '#888';
+      ctx.fillRect(2*p, 2*p+4, p, p*2);
+      ctx.fillRect(5*p, 2*p+4, p, p*2);
+      ctx.fillRect(7*p, 2*p+4, p, p*2);
+      ctx.fillRect(10*p, 2*p+4, p, p*2);
+      ctx.fillRect(5*p, 3*p+4, 2*p, p);
+
+      // smug smile
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(4*p, 5*p+4, p, p);
+      ctx.fillRect(5*p, 6*p+4, p*3, p);
+      ctx.fillRect(8*p, 5*p+4, p, p);
+
+      // teeth
+      ctx.fillStyle = '#f5f0e8';
+      ctx.fillRect(5*p, 5*p+4, p*3, p);
+
+      // body / shirt
+      ctx.fillStyle = '#2a5a2a';
+      for (let row = 8; row < 14; row++) {
+        for (let col = 1; col < 13; col++) {
+          ctx.fillRect(col*p, row*p+4, p, p);
+        }
+      }
+
+      // wagging finger
+      ctx.fillStyle = '#d4956a';
+      ctx.fillRect(13*p, 5*p+4, p, p);
+      ctx.fillRect(14*p, 4*p+4, p, p);
+      ctx.fillRect(15*p, 3*p+4, p, p);
+      ctx.fillRect(16*p, 2*p+4, p, p);
+      ctx.fillRect(16*p, p+4, p, p);
+    }
 
     // Pixel grid
     const grid = document.getElementById('pixelGrid');
