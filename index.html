@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J Breezy Baby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e03c1f;
+      --cream: #f5f0e8;
+      --black: #1a1a1a;
+      --gold: #c9920a;
+      --teal: #1d9e75;
+      --cream-dark: #ede8dc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      border-bottom: 3px solid var(--black);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .nav-links a:hover { border-color: var(--red); }
+
+    /* TICKER */
+    .ticker {
+      background: var(--red);
+      color: var(--cream);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      padding: 11px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 24s linear infinite;
+      padding-left: 100%;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 3px solid var(--black);
+      min-height: 340px;
+    }
+
+    .hero-left {
+      padding: 48px 40px;
+      border-right: 3px solid var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      margin-bottom: 20px;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-headline {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--red);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 26px;
+      display: block;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      padding: 5px 10px;
+      border: 2px solid var(--black);
+      text-transform: uppercase;
+    }
+
+    .tag.filled { background: var(--black); color: var(--cream); }
+
+    .hero-sub {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 380px;
+    }
+
+    .hero-right {
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pixel-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      grid-template-rows: repeat(12, 1fr);
+      opacity: 0.12;
+    }
+
+    .pixel-grid div { border: 0.5px solid var(--red); }
+
+    .hero-avatar {
+      width: 140px;
+      height: 140px;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-avatar-text {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--cream);
+      text-align: center;
+      line-height: 2;
+    }
+
+    /* CARDS SECTION */
+    .cards-section {
+      padding: 48px 32px;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .cards-section-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      margin-bottom: 32px;
+      letter-spacing: 0.1em;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    /* TRADING CARDS */
+    .card {
+      border: 3px solid var(--black);
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:nth-child(1) { transform: rotate(-1.5deg); }
+    .card:nth-child(2) { transform: rotate(1deg); }
+    .card:nth-child(3) { transform: rotate(-0.8deg); }
+    .card:nth-child(4) { transform: rotate(1.8deg); }
+    .card:nth-child(5) { transform: rotate(-1.2deg); }
+    .card:nth-child(6) { transform: rotate(0.9deg); }
+
+    .card:hover {
+      transform: rotate(0deg) scale(1.06) translateY(-8px) !important;
+      z-index: 10;
+      box-shadow: 6px 6px 0 var(--black);
+    }
+
+    .card-header {
+      padding: 7px 10px 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid var(--black);
+    }
+
+    .card-name {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      line-height: 1.6;
+    }
+
+    .card-hp {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: var(--red);
+      white-space: nowrap;
+    }
+
+    .card-art {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 2px solid var(--black);
+      overflow: hidden;
+    }
+
+    .card-art canvas {
+      image-rendering: pixelated;
+      width: 72%;
+      height: 72%;
+    }
+
+    .card-type {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      padding: 4px 8px;
+      color: #555;
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--black);
+    }
+
+    .card-flavor {
+      font-size: 8px;
+      padding: 6px 8px;
+      color: #333;
+      line-height: 1.6;
+      font-style: italic;
+      font-family: Georgia, serif;
+      border-bottom: 1px solid var(--black);
+      min-height: 42px;
+    }
+
+    .card-stats { padding: 7px 8px; }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 4.5px;
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    .stat-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: #d4cfc4;
+      border: 1px solid var(--black);
+    }
+
+    .stat-fill {
+      height: 100%;
+      background: var(--black);
+    }
+
+    .stat-fill.red { background: var(--red); }
+    .stat-fill.gold { background: var(--gold); }
+    .stat-fill.teal { background: var(--teal); }
+
+    .stat-val {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 4.5px;
+      width: 18px;
+      text-align: right;
+    }
+
+    .card-footer {
+      border-top: 2px solid var(--black);
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+      background: var(--black);
+    }
+
+    .card-rarity {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      color: var(--cream);
+    }
+
+    .card-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      color: #888;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 3px solid var(--black);
+      padding: 40px 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      line-height: 1.8;
+      color: var(--black);
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    .footer-bio {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      margin-bottom: 16px;
+      color: var(--red);
+    }
+
+    .footer-links ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+
+    .footer-links a:hover { border-color: var(--red); }
+
+    .footer-bottom {
+      border-top: 2px solid var(--black);
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo">J<span>B</span>REEZY<br>BABY</a>
+    <ul class="nav-links">
+      <li><a href="#cocktails">Cocktails</a></li>
+      <li><a href="#blues">Blues Jams</a></li>
+      <li><a href="#stage">Stage Time</a></li>
+      <li><a href="#bread">Bread Lab</a></li>
+      <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin</a></li>
+      <li><a href="#lab">The Lab</a></li>
+    </ul>
+  </nav>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <span class="ticker-inner">
+      ★ cocktail experiments ★ blues jams every month ★ bread that slaps ★ stand-up stories ★ small business adventures ★ AI-powered apps ★ creative chaos ★ Manassas VA ★ welcome to the universe of J Breezy Baby &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">► EST. MANASSAS, VA</div>
+      <h1 class="hero-headline">
+        Welcome to
+        <em>J Breezy<br>Baby</em>
+      </h1>
+      <div class="hero-tags">
+        <span class="tag filled">Mixologist</span>
+        <span class="tag">Blues Organizer</span>
+        <span class="tag">Storyteller</span>
+        <span class="tag">Baker</span>
+        <span class="tag">Builder</span>
+      </div>
+      <p class="hero-sub">Cocktails, bread, blues music, stand-up, creative writing, AI experiments, and a small business built with love. This is the whole person — not the resume.</p>
+    </div>
+    <div class="hero-right">
+      <div class="pixel-grid" id="pixelGrid"></div>
+      <div class="hero-avatar">
+        <div class="hero-avatar-text">YOUR<br>FACE<br>HERE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="cards-section">
+    <div class="cards-section-label">► SELECT YOUR CARD</div>
+    <div class="cards-grid">
+
+      <a class="card" href="#cocktails" id="cocktails">
+        <div class="card-header">
+          <div class="card-name">COCKTAIL<br>LAB</div>
+          <div class="card-hp">HP 94</div>
+        </div>
+        <div class="card-art" style="background:#1a1a1a">
+          <canvas id="c1" width="64" height="64"></canvas>
+        </div>
+        <div class="card-type">★ MIXOLOGIST — CHAOTIC GOOD</div>
+        <div class="card-flavor">"Drinks that probably shouldn't work but absolutely do."</div>
+        <div class="card-stats">
+          <div class="stat-row"><span class="stat-label">CREATIVITY</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:95%"></div></div><span class="stat-val">95</span></div>
+          <div class="stat-row"><span class="stat-label">DANGER</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:67%"></div></div><span class="stat-val">67</span></div>
+          <div class="stat-row"><span class="stat-label">VIBES</span><div class="stat-bar-bg"><div class="stat-fill" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
+        </div>
+        <div class="card-footer"><span class="card-rarity">◆ RARE</span><span class="card-num">001/006</span></div>
+      </a>
+
+      <a class="card" href="#blues" id="blues">
+        <div class="card-header">
+          <div class="card-name">BLUES<br>JAMS</div>
+          <div class="card-hp">HP 88</div>
+        </div>
+        <div class="card-art" style="background:#1a1a1a">
+          <canvas id="c2" width="64" height="64"></canvas>
+        </div>
+        <div class="card-type">★ ORGANIZER — COMMUNITY BUILDER</div>
+        <div class="card-flavor">"Gathers the people. Makes the noise. Keeps the blues alive."</div>
+        <div class="card-stats">
+          <div class="stat-row"><span class="stat-label">GROOVE</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:98%"></div></div><span class="stat-val">98</span></div>
+          <div class="stat-row"><span class="stat-label">VOLUME</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:88%"></div></div><span class="stat-val">88</span></div>
+          <div class="stat-row"><span class="stat-label">SOUL</span><div class="stat-bar-bg"><div class="stat-fill" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
+        </div>
+        <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">002/006</span></div>
+      </a>
+
+      <a class="card" href="#stage" id="stage">
+        <div class="card-header">
+          <div class="card-name">STAGE<br>TIME</div>
+          <div class="card-hp">HP 91</div>
+        </div>
+        <div class="card-art" style="background:#1a1a1a">
+          <canvas id="c3" width="64" height="64"></canvas>
+        </div>
+        <div class="card-type">★ PERFORMER — STORYTELLER CLASS</div>
+        <div class="card-flavor">"Stand-up, storytelling competitions, creative writing. All of it."</div>
+        <div class="card-stats">
+          <div class="stat-row"><span class="stat-label">CROWD WORK</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:82%"></div></div><span class="stat-val">82</span></div>
+          <div class="stat-row"><span class="stat-label">NERVE</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:91%"></div></div><span class="stat-val">91</span></div>
+          <div class="stat-row"><span class="stat-label">LAUGHS</span><div class="stat-bar-bg"><div class="stat-fill" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
+        </div>
+        <div class="card-footer"><span class="card-rarity">◆◆◆ LEGENDARY</span><span class="card-num">003/006</span></div>
+      </a>
+
+      <a class="card" href="#bread" id="bread">
+        <div class="card-header">
+          <div class="card-name">BREAD<br>LAB</div>
+          <div class="card-hp">HP 76</div>
+        </div>
+        <div class="card-art" style="background:#1a1a1a">
+          <canvas id="c4" width="64" height="64"></canvas>
+        </div>
+        <div class="card-type">★ BAKER — GLUTEN SORCERER</div>
+        <div class="card-flavor">"The wins, the bricks, the loaves that haunt you forever."</div>
+        <div class="card-stats">
+          <div class="stat-row"><span class="stat-label">PATIENCE</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:73%"></div></div><span class="stat-val">73</span></div>
+          <div class="stat-row"><span class="stat-label">CRUST</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:89%"></div></div><span class="stat-val">89</span></div>
+          <div class="stat-row"><span class="stat-label">CRUMB</span><div class="stat-bar-bg"><div class="stat-fill" style="width:78%"></div></div><span class="stat-val">78</span></div>
+        </div>
+        <div class="card-footer"><span class="card-rarity">◆ RARE</span><span class="card-num">004/006</span></div>
+      </a>
+
+      <a class="card" href="https://petitpuffinplay.com" target="_blank">
+        <div class="card-header">
+          <div class="card-name">PETIT<br>PUFFIN</div>
+          <div class="card-hp">HP 85</div>
+        </div>
+        <div class="card-art" style="background:#1d9e75">
+          <canvas id="c5" width="64" height="64"></canvas>
+        </div>
+        <div class="card-type">★ FOUNDER — SMALL BIZ GUILD</div>
+        <div class="card-flavor">"Natural dough, wooden rollers, thoughtful play. Built with love."</div>
+        <div class="card-stats">
+          <div class="stat-row"><span class="stat-label">SQUISH</span><div class="stat-bar-bg"><div class="stat-fill teal" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
+          <div class="stat-row"><span class="stat-label">NATURAL</span><div class="stat-bar-bg"><div class="stat-fill teal" style="width:95%"></div></div><span class="stat-val">95</span></div>
+          <div class="stat-row"><span class="stat-label">KID APPROVED</span><div class="stat-bar-bg"><div class="stat-fill teal" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
+        </div>
+        <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">005/006</span></div>
+      </a>
+
+      <a class="card" href="#lab" id="lab">
+        <div class="card-header">
+          <div class="card-name">THE<br>LAB</div>
+          <div class="card-hp">HP 99</div>
+        </div>
+        <div class="card-art" style="background:#1a1a1a">
+          <canvas id="c6" width="64" height="64"></canvas>
+        </div>
+        <div class="card-type">★ BUILDER — CHAOTIC NEUTRAL</div>
+        <div class="card-flavor">"AI-powered apps, fretboard tools, weird experiments. Ships fast."</div>
+        <div class="card-stats">
+          <div class="stat-row"><span class="stat-label">SHIPPED</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:72%"></div></div><span class="stat-val">72</span></div>
+          <div class="stat-row"><span class="stat-label">UNHINGED</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
+          <div class="stat-row"><span class="stat-label">ACTUALLY WORKS</span><div class="stat-bar-bg"><div class="stat-fill" style="width:81%"></div></div><span class="stat-val">81</span></div>
+        </div>
+        <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">006/006</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
+    </div>
+    <div class="footer-bio">
+      Cocktails, bread, blues music, stand-up comedy, creative writing, AI experiments, and a small business. Based in Manassas, VA. Always making something.
+    </div>
+    <div class="footer-links">
+      <h4>► Find Me</h4>
+      <ul>
+        <li><a href="https://linkedin.com/in/jpcalabrese" target="_blank">LinkedIn</a></li>
+        <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin Play</a></li>
+        <li><a href="mailto:hello@jpcalabrese.com">Email Me</a></li>
+        <li><a href="#">Book Time With Me</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 J Breezy Baby</p>
+    <p>Built with chaos & Claude</p>
+  </div>
+
+  <script>
+    // Pixel grid
+    const grid = document.getElementById('pixelGrid');
+    for (let i = 0; i < 240; i++) {
+      const d = document.createElement('div');
+      if (Math.random() > 0.72) d.style.background = '#e03c1f';
+      grid.appendChild(d);
+    }
+
+    // Pixel art drawing
+    const px = 4;
+
+    function fill(ctx, grid, ox, oy, color) {
+      ctx.fillStyle = color;
+      grid.forEach((row, r) => row.forEach((v, c) => {
+        if (v) ctx.fillRect(ox + c * px, oy + r * px, px, px);
+      }));
+    }
+
+    function drawCocktail(ctx) {
+      fill(ctx,[[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,1,1,1,0,0,0],[0,0,0,0,1,1,0,0,1,1,0,0,0,0],[0,0,0,0,0,1,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,1,1,0,0,0,0,0,0],[0,0,0,0,0,0,1,1,0,0,0,0,0,0],[0,0,0,0,1,1,1,1,1,1,0,0,0,0]],4,16,'#e03c1f');
+      fill(ctx,[[1],[1],[1]],[...Array(3)].map((_,i)=>([0,0,0,0,0,0,0,0,0,1,0,0,0,0].map((v,j)=>j===9-i?1:0)),4,2,'#c9920a'));
+      ctx.fillStyle='#c9920a';
+      ctx.fillRect(4+9*px,2,px,px); ctx.fillRect(4+8*px,6,px,px); ctx.fillRect(4+7*px,10,px,px);
+      ctx.fillStyle='#f5f0e8';
+      ctx.fillRect(4+2*px,16+2*px,px,px); ctx.fillRect(4+3*px,16+2*px,px,px);
+    }
+
+    function drawGuitar(ctx) {
+      fill(ctx,[[0,0,1,1,1,1,0,0],[0,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1],[1,1,1,0,0,1,1,1],[1,1,1,0,0,1,1,1],[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,0],[0,0,1,1,1,1,0,0]],8,8,'#c9920a');
+      ctx.fillStyle='#e03c1f';
+      ctx.fillRect(8+8*px,0,px,8*px); ctx.fillRect(8+9*px,0,px,8*px);
+      fill(ctx,[[1,1],[1,1]],8+3*px,8+3*px,'#1a1a1a');
+    }
+
+    function drawMic(ctx) {
+      fill(ctx,[[0,1,1,1,0],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,1,0],[0,0,1,0,0],[0,0,1,0,0],[0,1,1,1,0]],14,8,'#e03c1f');
+      ctx.fillStyle='#c9920a';
+      ctx.fillRect(14+px,8+2*px,px,px); ctx.fillRect(14+3*px,8+2*px,px,px);
+      ctx.fillRect(14+px,8+3*px,px,px); ctx.fillRect(14+3*px,8+3*px,px,px);
+    }
+
+    function drawBread(ctx) {
+      fill(ctx,[[0,0,1,1,1,1,0,0],[0,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,0]],8,14,'#c9920a');
+      ctx.fillStyle='#e03c1f';
+      ctx.fillRect(8+2*px,14,px,px); ctx.fillRect(8+5*px,14+px,px,px); ctx.fillRect(8+3*px,14+2*px,px,px);
+      ctx.fillStyle='#f5f0e8';
+      ctx.fillRect(8+px,14+2*px,px,px); ctx.fillRect(8+4*px,14+3*px,px,px);
+    }
+
+    function drawPuffin(ctx) {
+      fill(ctx,[[0,1,1,0],[1,1,1,1],[0,1,1,0]],16,4,'#f5f0e8');
+      ctx.fillStyle='#1a1a1a'; ctx.fillRect(16+px,4+px,px,px); ctx.fillRect(16+2*px,4+px,px,px);
+      ctx.fillStyle='#e03c1f'; ctx.fillRect(16+px,4+2*px,2*px,px);
+      fill(ctx,[[0,1,1,0],[1,1,1,1],[1,1,1,1],[0,1,1,0],[0,1,1,0],[1,1,1,1]],16,4+3*px,'#1a1a1a');
+      fill(ctx,[[1,0],[1,0]],16,4+7*px,'#f5f0e8');
+      ctx.fillStyle='#e03c1f';
+      ctx.fillRect(16,4+9*px,px,px); ctx.fillRect(16+3*px,4+9*px,px,px);
+    }
+
+    function drawTerminal(ctx) {
+      fill(ctx,[[1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,1],[1,0,1,0,0,0,0,0,0,1],[1,0,1,1,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,1],[1,0,0,1,1,1,0,0,0,1],[1,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1]],8,10,'#e03c1f');
+      ctx.fillStyle='#f5f0e8';
+      ctx.fillRect(8+2*px,10+2*px,px,px);
+      ctx.fillRect(8+2*px,10+3*px,2*px,px);
+      ctx.fillRect(8+3*px,10+5*px,3*px,px);
+      ctx.fillStyle='#c9920a';
+      ctx.fillRect(8+4*px,10+8*px,2*px,px);
+      ctx.fillRect(8+2*px,10+9*px,6*px,px);
+    }
+
+    window.addEventListener('load', () => {
+      const fns = [drawCocktail, drawGuitar, drawMic, drawBread, drawPuffin, drawTerminal];
+      fns.forEach((fn, i) => {
+        const c = document.getElementById('c' + (i + 1));
+        if (c) fn(c.getContext('2d'));
+      });
+    });
+  </script>
+</body>
+</html>
