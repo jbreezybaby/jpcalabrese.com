@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoVA Blues Jam — J Breezy Baby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e03c1f;
+      --cream: #f5f0e8;
+      --black: #1a1a1a;
+      --gold: #c9920a;
+      --teal: #1d9e75;
+      --cream-dark: #ede8dc;
+      --blue: #1a3a6b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      border-bottom: 3px solid var(--black);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .nav-links a:hover { border-color: var(--red); }
+    .nav-links a.active { border-color: var(--black); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--black);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 3px solid var(--black);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-top: 1px solid var(--black); }
+      .nav-links a { display: block; padding: 14px 32px; border-bottom: none; }
+      .nav-links a:hover { background: var(--cream-dark); }
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      padding: 11px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 18s linear infinite;
+      padding-left: 100%;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      border-bottom: 3px solid var(--black);
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+    }
+
+    .page-eyebrow {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+
+    .page-title {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.0;
+      margin-bottom: 16px;
+    }
+
+    .page-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .page-badge {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      padding: 12px 16px;
+      border: 3px solid var(--black);
+      text-align: center;
+      line-height: 2;
+      white-space: nowrap;
+    }
+
+    /* SECTIONS */
+    .section {
+      border-bottom: 3px solid var(--black);
+    }
+
+    .section-header {
+      padding: 20px 40px;
+      border-bottom: 2px solid var(--black);
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-header h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+    }
+
+    .section-header .section-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+    }
+
+    .section-body {
+      padding: 40px;
+    }
+
+    /* NEXT JAM */
+    .next-jam-box {
+      border: 3px solid var(--black);
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+
+    .next-jam-label {
+      background: var(--red);
+      color: var(--cream);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      padding: 20px 12px;
+      letter-spacing: 0.1em;
+      border-right: 3px solid var(--black);
+    }
+
+    .next-jam-content {
+      padding: 28px 32px;
+    }
+
+    .next-jam-tbd {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .next-jam-detail {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .next-jam-detail a {
+      color: var(--red);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid var(--red);
+    }
+
+    .next-jam-tag {
+      display: inline-block;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      padding: 5px 10px;
+      background: var(--black);
+      color: var(--cream);
+      margin-top: 12px;
+    }
+
+    /* SETLIST */
+    .setlist {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .song-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--black);
+    }
+
+    .song-row:last-child { border-bottom: none; }
+
+    .song-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      width: 24px;
+    }
+
+    .song-info { flex: 1; }
+
+    .song-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .song-title a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      transition: border-color 0.15s;
+    }
+
+    .song-title a:hover { border-color: var(--red); color: var(--red); }
+
+    .song-meta {
+      font-size: 12px;
+      color: #666;
+      font-family: 'Press Start 2P', monospace;
+    }
+
+    .song-key {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      padding: 4px 8px;
+      border: 2px solid var(--black);
+      white-space: nowrap;
+    }
+
+    .song-links {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .song-link {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      padding: 3px 6px;
+      border: 1px solid var(--black);
+      text-decoration: none;
+      color: var(--black);
+      transition: background 0.15s;
+    }
+
+    .song-link:hover { background: var(--black); color: var(--cream); }
+
+    /* 101 SECTION */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .info-block h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--red);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .info-block p {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .info-block a {
+      color: var(--red);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid var(--red);
+    }
+
+    .resource-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .resource-list li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      padding: 10px 14px;
+      border: 2px solid var(--black);
+      transition: background 0.15s;
+    }
+
+    .resource-list li a:hover { background: var(--black); color: var(--cream); }
+
+    .resource-list li a::before {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      content: '►';
+      color: var(--red);
+    }
+
+    /* PAST JAMS */
+    .jams-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .jam-card {
+      border-right: 2px solid var(--black);
+      padding: 24px 20px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .jam-card:last-child { border-right: none; }
+    .jam-card:hover { background: var(--cream-dark); }
+
+    .jam-date {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .jam-headline {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .jam-desc {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .jam-tag {
+      display: inline-block;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      padding: 3px 7px;
+      margin-top: 10px;
+      border: 1px solid var(--black);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 3px solid var(--black);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      line-height: 1.8;
+      color: var(--black);
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    .footer-back a {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 2px;
+    }
+
+    .footer-back a:hover { color: var(--red); border-color: var(--red); }
+
+    .footer-bottom {
+      border-top: 2px solid var(--black);
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .page-hero { grid-template-columns: 1fr; padding: 32px 20px; }
+      .page-title { font-size: 36px; }
+      .section-body { padding: 24px 20px; }
+      .two-col { grid-template-columns: 1fr; }
+      .jams-grid { grid-template-columns: 1fr 1fr; }
+      .jam-card:nth-child(2) { border-right: none; }
+      .jam-card:nth-child(3) { border-top: 2px solid var(--black); }
+      .jam-card:nth-child(4) { border-top: 2px solid var(--black); }
+      footer { grid-template-columns: 1fr; padding: 24px 20px; }
+      .footer-bottom { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">J<span>B</span>REEZY<br>BABY</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#cocktails">Cocktails</a></li>
+      <li><a href="blues.html" class="active">Blues Jams</a></li>
+      <li><a href="index.html#stage">Stage Time</a></li>
+      <li><a href="index.html#bread">Bread Lab</a></li>
+      <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin</a></li>
+      <li><a href="index.html#lab">The Lab</a></li>
+    </ul>
+  </nav>
+
+  <div class="ticker">
+    <span class="ticker-inner">
+      ★ northern virginia's preeminent blues jam ★ all skill levels welcome ★ harris pavilion manassas va ★ bring your guitar ★ or just your ears ★ if you've never had the blues just keep living ★ &nbsp;&nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div>
+      <div class="page-eyebrow">► BLUES JAMS — 002/006</div>
+      <h1 class="page-title">NoVA<br><em>Blues</em><br>Jam</h1>
+      <p class="page-subtitle">Northern Virginia's preeminent blues jam, based in historic downtown Manassas. Open to musicians of all skill levels. Strangers welcome. Dancing encouraged.</p>
+    </div>
+    <div class="page-badge">
+      ◆◆ EPIC<br>────────<br>GROOVE: 98<br>VOLUME: 88<br>SOUL: MAX
+    </div>
+  </div>
+
+  <!-- NEXT JAM -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>⏭ NEXT JAM</h2>
+    </div>
+    <div class="section-body">
+      <div class="next-jam-box">
+        <div class="next-jam-label">UPCOMING</div>
+        <div class="next-jam-content">
+          <div class="next-jam-tbd">TBD — LOCATION BEING CONFIRMED</div>
+          <p class="next-jam-detail">Typically held at the <a href="https://goo.gl/maps/ppUHE6EsrYk5DpCh8" target="_blank">Harris Pavilion</a> in historic downtown Manassas, VA — a large public space with tables, chairs, shade, and rain cover.</p>
+          <p class="next-jam-detail">Follow along or reach out for updates on the next date.</p>
+          <span class="next-jam-tag">⚡ ELECTRIC JAM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SET LIST -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>⏯ SET LIST</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px;color:#555;line-height:1.7;margin-bottom:28px;">We jam over 12 bar blues progressions in various keys and have organically grown a set list of songs. No need to know them ahead of time — but here they are if you want to prep:</p>
+      <div class="setlist">
+
+        <div class="song-row">
+          <span class="song-num">01</span>
+          <div class="song-info">
+            <div class="song-title"><a href="https://www.youtube.com/watch?v=O8hqGu-leFc" target="_blank">Sweet Home Chicago</a></div>
+            <div class="song-meta">Robert Johnson</div>
+          </div>
+          <span class="song-key">SHUFFLE IN E</span>
+        </div>
+
+        <div class="song-row">
+          <span class="song-num">02</span>
+          <div class="song-info">
+            <div class="song-title"><a href="https://www.youtube.com/watch?v=xifoTGRBhg0" target="_blank">Call It Stormy Monday</a></div>
+            <div class="song-meta">T-Bone Walker</div>
+            <div class="song-links">
+              <a href="https://www.youtube.com/watch?v=3UhnOLHLocU&t=1s" target="_blank" class="song-link">► LESSON</a>
+            </div>
+          </div>
+          <span class="song-key">12/8 IN G</span>
+        </div>
+
+        <div class="song-row">
+          <span class="song-num">03</span>
+          <div class="song-info">
+            <div class="song-title"><a href="https://www.youtube.com/watch?v=1gX1EP6mG-E" target="_blank">Wagon Wheel</a></div>
+            <div class="song-meta">Old Crow Medicine Show</div>
+          </div>
+          <span class="song-key">G D Em C</span>
+        </div>
+
+        <div class="song-row">
+          <span class="song-num">04</span>
+          <div class="song-info">
+            <div class="song-title"><a href="https://www.youtube.com/watch?v=rXwMrBb2x1Q" target="_blank">Hey Joe</a></div>
+            <div class="song-meta">Jimi Hendrix</div>
+            <div class="song-links">
+              <a href="https://www.youtube.com/watch?v=s3b96zhjTCI" target="_blank" class="song-link">► LESSON</a>
+            </div>
+          </div>
+          <span class="song-key">C G D A E</span>
+        </div>
+
+        <div class="song-row">
+          <span class="song-num">05</span>
+          <div class="song-info">
+            <div class="song-title"><a href="https://www.youtube.com/watch?v=H7ZPMScX9-k" target="_blank">Life by the Drop</a></div>
+            <div class="song-meta">Stevie Ray Vaughan</div>
+          </div>
+          <span class="song-key">KEY OF A</span>
+        </div>
+
+        <div class="song-row">
+          <span class="song-num">06</span>
+          <div class="song-info">
+            <div class="song-title"><a href="https://www.bing.com/videos/search?q=mississippi+phone+booth&view=detail&mid=E162FD248F4C41642B78E162FD248F4C41642B78&FORM=VIRE" target="_blank">Mississippi Phone Booth</a></div>
+            <div class="song-meta">John Hiatt</div>
+          </div>
+          <span class="song-key">KEY OF E</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BLUES JAM 101 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>🎓 NOVA BLUES JAM 101</h2>
+    </div>
+    <div class="section-body">
+      <div class="two-col">
+        <div class="info-block">
+          <h3>WHAT TO EXPECT</h3>
+          <p>Open to musicians of <strong>all skill levels.</strong> We'll teach you the basics in person. The jam takes place at the <a href="https://goo.gl/maps/t4oTNwM3i53L4vuS7" target="_blank">Harris Pavilion</a> in historic downtown Manassas — a large public space with tables, chairs, shade, and rain cover.</p>
+          <p>Currently running as an <strong>electric jam</strong>. Strangers have been known to wander over, grab a harmonica, and sit in for a song. Dancers too.</p>
+          <p style="font-style:italic;color:#888;font-size:14px;">"If you've never had the blues, just keep living."</p>
+        </div>
+        <div class="info-block">
+          <h3>NEW TO THE BLUES?</h3>
+          <p>Start here. Once you're comfortable, dig into dominant 7 chords, the pentatonic scale, the blues scale, and classic blues songs.</p>
+          <ul class="resource-list">
+            <li><a href="https://www.youtube.com/watch?v=yUSBEgKZdhw" target="_blank">Intro to the 12 bar blues progression</a></li>
+            <li><a href="https://www.youtube.com/watch?v=36X3wecT2z8" target="_blank">12 bar blues backing track in E</a></li>
+            <li><a href="https://nationalbluesmuseum.org/blues-jam-session-conventions-a-national-blues-museum-guide/" target="_blank">Blues jam conventions</a></li>
+            <li><a href="https://nationalbluesmuseum.org/popular-blues-jam-session-songs-a-national-blues-museum-list/" target="_blank">Popular blues jam songs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAST JAMS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>⏪ PAST JAMS</h2>
+    </div>
+    <div class="jams-grid">
+
+      <div class="jam-card">
+        <div class="jam-date">JUNE 3, 2023</div>
+        <div class="jam-headline">First electric jam!</div>
+        <div class="jam-desc">Fear that amateurism + amplification would be a problem was unfounded. The public power outlets work. Strangers came and sat in. A guy brought his harmonica. The law didn't mind.</div>
+        <span class="jam-tag">⚡ ELECTRIC</span>
+      </div>
+
+      <div class="jam-card">
+        <div class="jam-date">MAY 7, 2023</div>
+        <div class="jam-headline">3rd jam.</div>
+        <div class="jam-desc">5 acoustic guitars, 1 acoustic bass. Hard to hear each other at times — cemented the move toward electric. Notes taken. Lessons learned. Why have I still not taken photos or videos?</div>
+        <span class="jam-tag">🎸 ACOUSTIC</span>
+      </div>
+
+      <div class="jam-card">
+        <div class="jam-date">APRIL 16, 2023</div>
+        <div class="jam-headline">The one where strangers danced.</div>
+        <div class="jam-desc">A stranger joined mid-song and started singing. Then a couple came and danced. Kids clapped along. People took photos. When it ended, everyone felt a little cool about what had just happened.</div>
+        <span class="jam-tag">💙 MAGIC</span>
+      </div>
+
+      <div class="jam-card">
+        <div class="jam-date">MARCH 26, 2023</div>
+        <div class="jam-headline">The debut.</div>
+        <div class="jam-desc">Four acoustic guitar players who met through the Hilton Performing Arts Center advanced guitar class for military families. Northern Virginia's preeminent blues jam had officially begun.</div>
+        <span class="jam-tag">★ THE FIRST</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
+    <div class="footer-back">
+      <a href="index.html">◄ BACK TO HOME</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 J Breezy Baby</p>
+    <p>Built with chaos & Claude</p>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
