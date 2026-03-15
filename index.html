@@ -27,7 +27,6 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
     nav {
       display: flex;
       justify-content: space-between;
@@ -94,7 +93,6 @@
 
     @media (max-width: 680px) {
       .hamburger { display: flex; }
-
       .nav-links {
         display: none;
         flex-direction: column;
@@ -107,21 +105,12 @@
         border-bottom: 3px solid var(--black);
         z-index: 99;
       }
-
       .nav-links.open { display: flex; }
-
       .nav-links li { border-top: 1px solid var(--black); }
-
-      .nav-links a {
-        display: block;
-        padding: 14px 32px;
-        border-bottom: none;
-      }
-
+      .nav-links a { display: block; padding: 14px 32px; border-bottom: none; }
       .nav-links a:hover { background: var(--cream-dark); border-bottom: none; }
     }
 
-    /* TICKER */
     .ticker {
       background: var(--red);
       color: var(--cream);
@@ -144,7 +133,6 @@
       to { transform: translateX(-100%); }
     }
 
-    /* HERO */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -202,13 +190,6 @@
 
     .tag.filled { background: var(--black); color: var(--cream); }
 
-    .hero-sub {
-      font-size: 15px;
-      color: #555;
-      line-height: 1.7;
-      max-width: 380px;
-    }
-
     .hero-right {
       background: var(--black);
       display: flex;
@@ -229,26 +210,6 @@
 
     .pixel-grid div { border: 0.5px solid var(--red); }
 
-    .hero-avatar {
-      width: 140px;
-      height: 140px;
-      background: var(--red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-avatar-text {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: var(--cream);
-      text-align: center;
-      line-height: 2;
-    }
-
-    /* CARDS SECTION */
     .cards-section {
       padding: 48px 32px;
       border-bottom: 3px solid var(--black);
@@ -264,11 +225,10 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
     }
 
-    /* TRADING CARDS */
     .card {
       border: 3px solid var(--black);
       background: var(--cream);
@@ -285,7 +245,6 @@
     .card:nth-child(3) { transform: rotate(-0.8deg); }
     .card:nth-child(4) { transform: rotate(1.8deg); }
     .card:nth-child(5) { transform: rotate(-1.2deg); }
-    .card:nth-child(6) { transform: rotate(0.9deg); }
 
     .card:hover {
       transform: rotate(0deg) scale(1.06) translateY(-8px) !important;
@@ -372,11 +331,7 @@
       border: 1px solid var(--black);
     }
 
-    .stat-fill {
-      height: 100%;
-      background: var(--black);
-    }
-
+    .stat-fill { height: 100%; background: var(--black); }
     .stat-fill.red { background: var(--red); }
     .stat-fill.gold { background: var(--gold); }
     .stat-fill.teal { background: var(--teal); }
@@ -396,19 +351,9 @@
       background: var(--black);
     }
 
-    .card-rarity {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 5px;
-      color: var(--cream);
-    }
+    .card-rarity { font-family: 'Press Start 2P', monospace; font-size: 5px; color: var(--cream); }
+    .card-num { font-family: 'Press Start 2P', monospace; font-size: 5px; color: #888; }
 
-    .card-num {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 5px;
-      color: #888;
-    }
-
-    /* FOOTER */
     footer {
       border-top: 3px solid var(--black);
       padding: 40px 32px;
@@ -418,47 +363,11 @@
       align-items: start;
     }
 
-    .footer-logo {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      line-height: 1.8;
-      color: var(--black);
-    }
-
+    .footer-logo { font-family: 'Press Start 2P', monospace; font-size: 10px; line-height: 1.8; color: var(--black); }
     .footer-logo span { color: var(--red); }
-
-    .footer-bio {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-    }
-
-    .footer-links h4 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      margin-bottom: 16px;
-      color: var(--red);
-    }
-
-    .footer-links ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--black);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 1px;
-      transition: border-color 0.15s;
-    }
-
+    .footer-links h4 { font-family: 'Press Start 2P', monospace; font-size: 7px; margin-bottom: 16px; color: var(--red); }
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; font-weight: 700; color: var(--black); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid transparent; padding-bottom: 1px; transition: border-color 0.15s; }
     .footer-links a:hover { border-color: var(--red); }
 
     .footer-bottom {
@@ -469,16 +378,11 @@
       align-items: center;
     }
 
-    .footer-bottom p {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 6px;
-      color: #888;
-    }
+    .footer-bottom p { font-family: 'Press Start 2P', monospace; font-size: 6px; color: #888; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="/" class="logo">J<span>B</span>REEZY<br>BABY</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -493,17 +397,15 @@
     </ul>
   </nav>
 
-  <!-- TICKER -->
   <div class="ticker">
     <span class="ticker-inner">
       FEEL THE BREEZE BABY &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 48 20" style="display:inline-block;vertical-align:middle"><rect x="2" y="4" width="32" height="3" fill="#f5f0e8"/><rect x="2" y="10" width="24" height="3" fill="#f5f0e8" opacity="0.7"/><rect x="2" y="16" width="16" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="36" y="4" width="4" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="28" y="10" width="4" height="3" fill="#f5f0e8" opacity="0.3"/></svg>&nbsp;&nbsp; FEEL THE BREEZE BABY &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 48 20" style="display:inline-block;vertical-align:middle"><rect x="2" y="4" width="32" height="3" fill="#f5f0e8"/><rect x="2" y="10" width="24" height="3" fill="#f5f0e8" opacity="0.7"/><rect x="2" y="16" width="16" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="36" y="4" width="4" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="28" y="10" width="4" height="3" fill="#f5f0e8" opacity="0.3"/></svg>&nbsp;&nbsp; FEEL THE BREEZE BABY &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="48" height="20" viewBox="0 0 48 20" style="display:inline-block;vertical-align:middle"><rect x="2" y="4" width="32" height="3" fill="#f5f0e8"/><rect x="2" y="10" width="24" height="3" fill="#f5f0e8" opacity="0.7"/><rect x="2" y="16" width="16" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="36" y="4" width="4" height="3" fill="#f5f0e8" opacity="0.4"/><rect x="28" y="10" width="4" height="3" fill="#f5f0e8" opacity="0.3"/></svg>&nbsp;&nbsp;&nbsp;&nbsp;
     </span>
   </div>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <div class="eyebrow">► EST. MANASSAS, VA</div>
+      <div class="eyebrow">&#9658; EST. MANASSAS, VA</div>
       <h1 class="hero-headline">
         Welcome to
         <em>J Breezy<br>Baby</em>
@@ -515,7 +417,6 @@
         <span class="tag">Baker</span>
         <span class="tag">Builder</span>
       </div>
-
     </div>
     <div class="hero-right">
       <div class="pixel-grid" id="pixelGrid"></div>
@@ -523,9 +424,8 @@
     </div>
   </section>
 
-  <!-- CARDS -->
   <section class="cards-section">
-    <div class="cards-section-label">► SELECT YOUR CARD</div>
+    <div class="cards-section-label">&#9658; SELECT YOUR CARD</div>
     <div class="cards-grid">
 
       <a class="card wip-card" href="#" data-wip="true" id="kitchen">
@@ -533,17 +433,15 @@
           <div class="card-name">BOOZE +<br>BREAD =<br>LOVE</div>
           <div class="card-hp">HP 91</div>
         </div>
-        <div class="card-art" style="background:#1a1a1a">
-          <canvas id="c1" width="64" height="64"></canvas>
-        </div>
-        <div class="card-type">★ MAKER — KITCHEN CHAOS CLASS</div>
-        <div class="card-flavor">"Cocktails that shouldn't work. Loaves that haunt you. All love."</div>
+        <div class="card-art" style="background:#1a1a1a"><canvas id="c1" width="64" height="64"></canvas></div>
+        <div class="card-type">&#9733; MAKER &mdash; KITCHEN CHAOS CLASS</div>
+        <div class="card-flavor">&ldquo;Cocktails that shouldn&rsquo;t work. Loaves that haunt you. All love.&rdquo;</div>
         <div class="card-stats">
           <div class="stat-row"><span class="stat-label">CREATIVITY</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:95%"></div></div><span class="stat-val">95</span></div>
           <div class="stat-row"><span class="stat-label">PATIENCE</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:73%"></div></div><span class="stat-val">73</span></div>
           <div class="stat-row"><span class="stat-label">LOVE</span><div class="stat-bar-bg"><div class="stat-fill" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
         </div>
-        <div class="card-footer"><span class="card-rarity">◆ RARE</span><span class="card-num">001/005</span></div>
+        <div class="card-footer"><span class="card-rarity">&#9670; RARE</span><span class="card-num">001/005</span></div>
       </a>
 
       <a class="card" href="blues.html" id="blues">
@@ -551,17 +449,15 @@
           <div class="card-name">BLUES<br>JAMS</div>
           <div class="card-hp">HP 88</div>
         </div>
-        <div class="card-art" style="background:#1a1a1a">
-          <canvas id="c2" width="64" height="64"></canvas>
-        </div>
-        <div class="card-type">★ ORGANIZER — COMMUNITY BUILDER</div>
-        <div class="card-flavor">"We're trying our best."</div>
+        <div class="card-art" style="background:#1a1a1a"><canvas id="c2" width="64" height="64"></canvas></div>
+        <div class="card-type">&#9733; ORGANIZER &mdash; COMMUNITY BUILDER</div>
+        <div class="card-flavor">&ldquo;We&rsquo;re trying our best.&rdquo;</div>
         <div class="card-stats">
-          <div class="stat-row"><span class="stat-label">GROOVE</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:98%"></div></div><span class="stat-val">98</span></div>
-          <div class="stat-row"><span class="stat-label">VOLUME</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:88%"></div></div><span class="stat-val">88</span></div>
+          <div class="stat-row"><span class="stat-label">GROOVE</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:39%"></div></div><span class="stat-val">39</span></div>
+          <div class="stat-row"><span class="stat-label">VOLUME</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:11%"></div></div><span class="stat-val">11</span></div>
           <div class="stat-row"><span class="stat-label">SOUL</span><div class="stat-bar-bg"><div class="stat-fill" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
         </div>
-        <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">002/005</span></div>
+        <div class="card-footer"><span class="card-rarity">&#9670;&#9670; EPIC</span><span class="card-num">002/005</span></div>
       </a>
 
       <a class="card wip-card" href="#" data-wip="true" id="stage">
@@ -569,17 +465,15 @@
           <div class="card-name">STAGE<br>TIME</div>
           <div class="card-hp">HP 91</div>
         </div>
-        <div class="card-art" style="background:#1a1a1a">
-          <canvas id="c3" width="64" height="64"></canvas>
-        </div>
-        <div class="card-type">★ PERFORMER — STORYTELLER CLASS</div>
-        <div class="card-flavor">"Stand-up, storytelling competitions, creative writing. All of it."</div>
+        <div class="card-art" style="background:#1a1a1a"><canvas id="c3" width="64" height="64"></canvas></div>
+        <div class="card-type">&#9733; PERFORMER &mdash; STORYTELLER CLASS</div>
+        <div class="card-flavor">&ldquo;Stand-up, storytelling competitions, creative writing. All of it.&rdquo;</div>
         <div class="card-stats">
           <div class="stat-row"><span class="stat-label">CROWD WORK</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:82%"></div></div><span class="stat-val">82</span></div>
           <div class="stat-row"><span class="stat-label">NERVE</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:91%"></div></div><span class="stat-val">91</span></div>
           <div class="stat-row"><span class="stat-label">LAUGHS</span><div class="stat-bar-bg"><div class="stat-fill" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
         </div>
-        <div class="card-footer"><span class="card-rarity">◆◆◆ LEGENDARY</span><span class="card-num">003/005</span></div>
+        <div class="card-footer"><span class="card-rarity">&#9670;&#9670;&#9670; LEGENDARY</span><span class="card-num">003/005</span></div>
       </a>
 
       <a class="card" href="https://petitpuffinplay.com" target="_blank">
@@ -587,17 +481,15 @@
           <div class="card-name">PETIT<br>PUFFIN</div>
           <div class="card-hp">HP 85</div>
         </div>
-        <div class="card-art" style="background:#1d9e75">
-          <canvas id="c4" width="64" height="64"></canvas>
-        </div>
-        <div class="card-type">★ FOUNDER — SMALL BIZ GUILD</div>
-        <div class="card-flavor">"Natural dough, wooden rollers, thoughtful play. Built with love."</div>
+        <div class="card-art" style="background:#1d9e75"><canvas id="c4" width="64" height="64"></canvas></div>
+        <div class="card-type">&#9733; FOUNDER &mdash; SMALL BIZ GUILD</div>
+        <div class="card-flavor">&ldquo;Natural dough, wooden rollers, thoughtful play. Built with love.&rdquo;</div>
         <div class="card-stats">
           <div class="stat-row"><span class="stat-label">SQUISH</span><div class="stat-bar-bg"><div class="stat-fill teal" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
           <div class="stat-row"><span class="stat-label">NATURAL</span><div class="stat-bar-bg"><div class="stat-fill teal" style="width:95%"></div></div><span class="stat-val">95</span></div>
           <div class="stat-row"><span class="stat-label">KID APPROVED</span><div class="stat-bar-bg"><div class="stat-fill teal" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
         </div>
-        <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">004/005</span></div>
+        <div class="card-footer"><span class="card-rarity">&#9670;&#9670; EPIC</span><span class="card-num">004/005</span></div>
       </a>
 
       <a class="card wip-card" href="#" data-wip="true" id="lab">
@@ -605,23 +497,20 @@
           <div class="card-name">THE<br>LAB</div>
           <div class="card-hp">HP 99</div>
         </div>
-        <div class="card-art" style="background:#1a1a1a">
-          <canvas id="c5" width="64" height="64"></canvas>
-        </div>
-        <div class="card-type">★ BUILDER — CHAOTIC NEUTRAL</div>
-        <div class="card-flavor">"AI-powered apps, fretboard tools, weird experiments. Ships fast."</div>
+        <div class="card-art" style="background:#1a1a1a"><canvas id="c5" width="64" height="64"></canvas></div>
+        <div class="card-type">&#9733; BUILDER &mdash; CHAOTIC NEUTRAL</div>
+        <div class="card-flavor">&ldquo;AI-powered apps, fretboard tools, weird experiments. Ships fast.&rdquo;</div>
         <div class="card-stats">
           <div class="stat-row"><span class="stat-label">SHIPPED</span><div class="stat-bar-bg"><div class="stat-fill red" style="width:72%"></div></div><span class="stat-val">72</span></div>
           <div class="stat-row"><span class="stat-label">UNHINGED</span><div class="stat-bar-bg"><div class="stat-fill gold" style="width:100%"></div></div><span class="stat-val">MAX</span></div>
           <div class="stat-row"><span class="stat-label">ACTUALLY WORKS</span><div class="stat-bar-bg"><div class="stat-fill" style="width:81%"></div></div><span class="stat-val">81</span></div>
         </div>
-        <div class="card-footer"><span class="card-rarity">◆◆ EPIC</span><span class="card-num">005/005</span></div>
+        <div class="card-footer"><span class="card-rarity">&#9670;&#9670; EPIC</span><span class="card-num">005/005</span></div>
       </a>
 
     </div>
   </section>
 
-  <!-- NEDRY MODAL -->
   <div id="nedryModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;">
     <div style="background:#f5f0e8;border:4px solid #1a1a1a;max-width:380px;width:90%;position:relative;box-shadow:8px 8px 0 #1a1a1a;">
       <div style="background:#1a1a1a;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
@@ -641,25 +530,20 @@
       </div>
     </div>
   </div>
-  <footer>
-    <div>
-      <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
-    </div>
 
+  <footer>
+    <div><div class="footer-logo">J<span>B</span>REEZY<br>BABY</div></div>
     <div class="footer-links">
-      <h4>► Find Me</h4>
-      <ul>
-        <li><a href="https://www.linkedin.com/in/james-calabrese/" target="_blank">LinkedIn</a></li>
-      </ul>
+      <h4>&#9658; Find Me</h4>
+      <ul><li><a href="https://www.linkedin.com/in/james-calabrese/" target="_blank">LinkedIn</a></li></ul>
     </div>
   </footer>
   <div class="footer-bottom">
-    <p>© 2026 J Breezy Baby</p>
-    <p>Built with chaos & Claude</p>
+    <p>&copy; 2026 J Breezy Baby</p>
+    <p>Built with chaos &amp; Claude</p>
   </div>
 
   <script>
-    // Hamburger menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
@@ -673,20 +557,10 @@
       });
     });
 
-    // Nedry modal
     const modal = document.getElementById('nedryModal');
     const magicInput = document.getElementById('magicInput');
     const magicHint = document.getElementById('magicHint');
-    const hints = [
-      "nope. try again.",
-      "still no.",
-      "not even close.",
-      "ah ah ah...",
-      "hint: it's what breezy babies say.",
-      "seriously though.",
-      "you're embarrassing yourself.",
-      "nedry is judging you.",
-    ];
+    const hints = ["nope. try again.","still no.","not even close.","ah ah ah...","hint: it's what breezy babies say.","seriously though.","you're embarrassing yourself.","nedry is judging you."];
     let hintIndex = 0;
 
     document.querySelectorAll('.wip-card').forEach(card => {
@@ -701,19 +575,14 @@
       });
     });
 
-    document.getElementById('nedryClose').addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    modal.addEventListener('click', e => {
-      if (e.target === modal) modal.style.display = 'none';
-    });
+    document.getElementById('nedryClose').addEventListener('click', () => { modal.style.display = 'none'; });
+    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 
     function checkMagicWord() {
       const val = magicInput.value.trim().toLowerCase();
       if (val === 'please' || val === 'feel the breeze baby' || val === 'breeze') {
         magicHint.style.color = '#1d9e75';
-        magicHint.textContent = '✓ access granted... just kidding. coming soon!';
+        magicHint.textContent = '\u2713 access granted... just kidding. coming soon!';
         magicInput.value = '';
         setTimeout(() => { modal.style.display = 'none'; magicHint.style.color = '#888'; }, 2000);
       } else {
@@ -734,69 +603,24 @@
       const ctx = c.getContext('2d');
       const p = 6;
       ctx.clearRect(0, 0, 120, 120);
-
-      const face = [
-        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
-        [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],
-        [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
-        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
-      ];
-
-      // skin
+      const face = [[0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],[0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],[0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0]];
       ctx.fillStyle = '#d4956a';
-      face.forEach((row, r) => row.forEach((v, c2) => {
-        if (v) ctx.fillRect(c2 * p, r * p + 4, p, p);
-      }));
-
-      // hair
+      face.forEach((row, r) => row.forEach((v, c2) => { if (v) ctx.fillRect(c2*p, r*p+4, p, p); }));
       ctx.fillStyle = '#3a2a1a';
       [[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[2,1],[11,1]].forEach(([x,y]) => ctx.fillRect(x*p, y*p+4, p, p));
-
-      // eyes
       ctx.fillStyle = '#1a1a1a';
-      ctx.fillRect(3*p, 2*p+4, p*2, p);
-      ctx.fillRect(8*p, 2*p+4, p*2, p);
-
-      // glasses
+      ctx.fillRect(3*p, 2*p+4, p*2, p); ctx.fillRect(8*p, 2*p+4, p*2, p);
       ctx.fillStyle = '#888';
-      ctx.fillRect(2*p, 2*p+4, p, p*2);
-      ctx.fillRect(5*p, 2*p+4, p, p*2);
-      ctx.fillRect(7*p, 2*p+4, p, p*2);
-      ctx.fillRect(10*p, 2*p+4, p, p*2);
-      ctx.fillRect(5*p, 3*p+4, 2*p, p);
-
-      // smug smile
+      ctx.fillRect(2*p, 2*p+4, p, p*2); ctx.fillRect(5*p, 2*p+4, p, p*2); ctx.fillRect(7*p, 2*p+4, p, p*2); ctx.fillRect(10*p, 2*p+4, p, p*2); ctx.fillRect(5*p, 3*p+4, 2*p, p);
       ctx.fillStyle = '#1a1a1a';
-      ctx.fillRect(4*p, 5*p+4, p, p);
-      ctx.fillRect(5*p, 6*p+4, p*3, p);
-      ctx.fillRect(8*p, 5*p+4, p, p);
-
-      // teeth
-      ctx.fillStyle = '#f5f0e8';
-      ctx.fillRect(5*p, 5*p+4, p*3, p);
-
-      // body / shirt
+      ctx.fillRect(4*p, 5*p+4, p, p); ctx.fillRect(5*p, 6*p+4, p*3, p); ctx.fillRect(8*p, 5*p+4, p, p);
+      ctx.fillStyle = '#f5f0e8'; ctx.fillRect(5*p, 5*p+4, p*3, p);
       ctx.fillStyle = '#2a5a2a';
-      for (let row = 8; row < 14; row++) {
-        for (let col = 1; col < 13; col++) {
-          ctx.fillRect(col*p, row*p+4, p, p);
-        }
-      }
-
-      // wagging finger
+      for (let row = 8; row < 14; row++) for (let col = 1; col < 13; col++) ctx.fillRect(col*p, row*p+4, p, p);
       ctx.fillStyle = '#d4956a';
-      ctx.fillRect(13*p, 5*p+4, p, p);
-      ctx.fillRect(14*p, 4*p+4, p, p);
-      ctx.fillRect(15*p, 3*p+4, p, p);
-      ctx.fillRect(16*p, 2*p+4, p, p);
-      ctx.fillRect(16*p, p+4, p, p);
+      ctx.fillRect(13*p, 5*p+4, p, p); ctx.fillRect(14*p, 4*p+4, p, p); ctx.fillRect(15*p, 3*p+4, p, p); ctx.fillRect(16*p, 2*p+4, p, p); ctx.fillRect(16*p, p+4, p, p);
     }
 
-    // Pixel grid
     const grid = document.getElementById('pixelGrid');
     for (let i = 0; i < 240; i++) {
       const d = document.createElement('div');
@@ -804,29 +628,15 @@
       grid.appendChild(d);
     }
 
-    // Pixel art drawing
     const px = 4;
-
     function fill(ctx, grid, ox, oy, color) {
       ctx.fillStyle = color;
-      grid.forEach((row, r) => row.forEach((v, c) => {
-        if (v) ctx.fillRect(ox + c * px, oy + r * px, px, px);
-      }));
-    }
-
-    function drawCocktail(ctx) {
-      fill(ctx,[[0,0,0,1,1,1,1,1,1,1,1,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,0,0,1,1,1,0,0,0],[0,0,0,0,1,1,0,0,1,1,0,0,0,0],[0,0,0,0,0,1,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,1,1,0,0,0,0,0,0],[0,0,0,0,0,0,1,1,0,0,0,0,0,0],[0,0,0,0,1,1,1,1,1,1,0,0,0,0]],4,16,'#e03c1f');
-      fill(ctx,[[1],[1],[1]],[...Array(3)].map((_,i)=>([0,0,0,0,0,0,0,0,0,1,0,0,0,0].map((v,j)=>j===9-i?1:0)),4,2,'#c9920a'));
-      ctx.fillStyle='#c9920a';
-      ctx.fillRect(4+9*px,2,px,px); ctx.fillRect(4+8*px,6,px,px); ctx.fillRect(4+7*px,10,px,px);
-      ctx.fillStyle='#f5f0e8';
-      ctx.fillRect(4+2*px,16+2*px,px,px); ctx.fillRect(4+3*px,16+2*px,px,px);
+      grid.forEach((row, r) => row.forEach((v, c) => { if (v) ctx.fillRect(ox + c*px, oy + r*px, px, px); }));
     }
 
     function drawGuitar(ctx) {
       fill(ctx,[[0,0,1,1,1,1,0,0],[0,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1],[1,1,1,0,0,1,1,1],[1,1,1,0,0,1,1,1],[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,0],[0,0,1,1,1,1,0,0]],8,8,'#c9920a');
-      ctx.fillStyle='#e03c1f';
-      ctx.fillRect(8+8*px,0,px,8*px); ctx.fillRect(8+9*px,0,px,8*px);
+      ctx.fillStyle='#e03c1f'; ctx.fillRect(8+8*px,0,px,8*px); ctx.fillRect(8+9*px,0,px,8*px);
       fill(ctx,[[1,1],[1,1]],8+3*px,8+3*px,'#1a1a1a');
     }
 
@@ -837,33 +647,21 @@
       ctx.fillRect(14+px,8+3*px,px,px); ctx.fillRect(14+3*px,8+3*px,px,px);
     }
 
-    function drawBread(ctx) {
-      fill(ctx,[[0,0,1,1,1,1,0,0],[0,1,1,1,1,1,1,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,0]],8,14,'#c9920a');
-      ctx.fillStyle='#e03c1f';
-      ctx.fillRect(8+2*px,14,px,px); ctx.fillRect(8+5*px,14+px,px,px); ctx.fillRect(8+3*px,14+2*px,px,px);
-      ctx.fillStyle='#f5f0e8';
-      ctx.fillRect(8+px,14+2*px,px,px); ctx.fillRect(8+4*px,14+3*px,px,px);
-    }
-
     function drawPuffin(ctx) {
       fill(ctx,[[0,1,1,0],[1,1,1,1],[0,1,1,0]],16,4,'#f5f0e8');
       ctx.fillStyle='#1a1a1a'; ctx.fillRect(16+px,4+px,px,px); ctx.fillRect(16+2*px,4+px,px,px);
       ctx.fillStyle='#e03c1f'; ctx.fillRect(16+px,4+2*px,2*px,px);
       fill(ctx,[[0,1,1,0],[1,1,1,1],[1,1,1,1],[0,1,1,0],[0,1,1,0],[1,1,1,1]],16,4+3*px,'#1a1a1a');
       fill(ctx,[[1,0],[1,0]],16,4+7*px,'#f5f0e8');
-      ctx.fillStyle='#e03c1f';
-      ctx.fillRect(16,4+9*px,px,px); ctx.fillRect(16+3*px,4+9*px,px,px);
+      ctx.fillStyle='#e03c1f'; ctx.fillRect(16,4+9*px,px,px); ctx.fillRect(16+3*px,4+9*px,px,px);
     }
 
     function drawTerminal(ctx) {
       fill(ctx,[[1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,1],[1,0,1,0,0,0,0,0,0,1],[1,0,1,1,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,1],[1,0,0,1,1,1,0,0,0,1],[1,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1]],8,10,'#e03c1f');
       ctx.fillStyle='#f5f0e8';
-      ctx.fillRect(8+2*px,10+2*px,px,px);
-      ctx.fillRect(8+2*px,10+3*px,2*px,px);
-      ctx.fillRect(8+3*px,10+5*px,3*px,px);
+      ctx.fillRect(8+2*px,10+2*px,px,px); ctx.fillRect(8+2*px,10+3*px,2*px,px); ctx.fillRect(8+3*px,10+5*px,3*px,px);
       ctx.fillStyle='#c9920a';
-      ctx.fillRect(8+4*px,10+8*px,2*px,px);
-      ctx.fillRect(8+2*px,10+9*px,6*px,px);
+      ctx.fillRect(8+4*px,10+8*px,2*px,px); ctx.fillRect(8+2*px,10+9*px,6*px,px);
     }
 
     function drawKitchen(ctx) {
