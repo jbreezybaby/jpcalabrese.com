@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Time — J Breezy Baby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e03c1f;
+      --cream: #f5f0e8;
+      --black: #1a1a1a;
+      --gold: #c9920a;
+      --teal: #1d9e75;
+      --cream-dark: #ede8dc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      border-bottom: 3px solid var(--black);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .nav-links a:hover { border-color: var(--red); }
+    .nav-links a.active { border-color: var(--black); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--black);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 3px solid var(--black);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-top: 1px solid var(--black); }
+      .nav-links a { display: block; padding: 14px 32px; border-bottom: none; }
+      .nav-links a:hover { background: var(--cream-dark); }
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      padding: 11px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
+      padding-left: 100%;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      border-bottom: 3px solid var(--black);
+      padding: 40px;
+    }
+
+    .page-eyebrow {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      margin-bottom: 14px;
+      letter-spacing: 0.1em;
+    }
+
+    .page-title {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.0;
+      margin-bottom: 14px;
+    }
+
+    .page-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      padding: 18px 40px;
+      border-bottom: 3px solid var(--black);
+      border-top: 3px solid var(--black);
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-header h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+    }
+
+    .section-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+    }
+
+    /* PERFORMANCE GRID */
+    .grid-wrap {
+      padding: 32px 40px;
+    }
+
+    .perf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* PERFORMANCE CARD */
+    .perf-card {
+      border: 3px solid var(--black);
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+    }
+
+    /* THUMBNAIL */
+    .perf-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--black);
+      border-bottom: 3px solid var(--black);
+    }
+
+    .perf-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .perf-card:hover .perf-thumb img {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+
+    /* Placeholder thumbnails */
+    .perf-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .thumb-icon {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 28px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1;
+    }
+
+    .thumb-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+    }
+
+    /* Play button overlay on thumbnails */
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .perf-thumb:hover .play-overlay { opacity: 1; }
+
+    .play-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--red);
+      border: 3px solid var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn::after {
+      content: '▶';
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      color: var(--cream);
+      margin-left: 3px;
+    }
+
+    /* External link overlay for age-restricted */
+    .ext-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .perf-thumb:hover .ext-overlay { opacity: 1; }
+
+    .ext-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--black);
+      border: 3px solid var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ext-btn::after {
+      content: '↗';
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      color: var(--cream);
+    }
+
+    /* CARD INFO */
+    .perf-info {
+      padding: 14px 16px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .perf-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .perf-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .perf-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      padding: 3px 6px;
+      border: 1.5px solid var(--black);
+      line-height: 1.6;
+      display: inline-block;
+    }
+
+    .perf-tag.win {
+      background: var(--red);
+      color: var(--cream);
+      border-color: var(--red);
+    }
+
+    .perf-tag.venue {
+      background: var(--red);
+      color: var(--cream);
+      border-color: var(--red);
+    }
+
+    /* DIRECTOR'S NOTES ACCORDION */
+    .notes-toggle {
+      margin-top: auto;
+      width: calc(100% + 32px);
+      margin-left: -16px;
+      padding: 10px 16px;
+      background: none;
+      border: none;
+      border-top: 2px solid var(--black);
+      cursor: pointer;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .notes-toggle:hover {
+      background: var(--cream-dark);
+    }
+
+    .notes-toggle.open {
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    .notes-arrow {
+      font-size: 8px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .notes-toggle.open .notes-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* DIRECTOR'S NOTES CONTENT */
+    .notes-content {
+      display: none;
+      padding: 16px;
+      border-top: 2px solid var(--black);
+      background: var(--cream-dark);
+      font-size: 13px;
+      line-height: 1.75;
+      color: #444;
+    }
+
+    .notes-content.open { display: block; }
+
+    .notes-content p { margin-bottom: 10px; }
+    .notes-content p:last-child { margin-bottom: 0; }
+
+    /* VIDEO MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 26, 26, 0.93);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 820px;
+      border: 3px solid var(--cream);
+    }
+
+    .modal-bar {
+      background: var(--black);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--cream);
+    }
+
+    .modal-bar-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--cream);
+      padding: 2px 6px;
+      transition: color 0.15s;
+    }
+
+    .modal-close:hover { color: var(--red); }
+
+    .modal-embed {
+      aspect-ratio: 16 / 9;
+      background: var(--black);
+    }
+
+    .modal-embed iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 3px solid var(--black);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      line-height: 1.8;
+      color: var(--black);
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    .footer-back a {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 2px;
+    }
+
+    .footer-back a:hover { color: var(--red); border-color: var(--red); }
+
+    .footer-bottom {
+      border-top: 2px solid var(--black);
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: #888;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .perf-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .page-hero { padding: 28px 20px; }
+      .page-title { font-size: 36px; }
+      .section-header { padding: 16px 20px; }
+      .grid-wrap { padding: 24px 20px; }
+      .perf-grid { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; padding: 24px 20px; }
+      .footer-bottom { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">J<span>B</span>REEZY<br>BABY</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#kitchen">Booze + Bread</a></li>
+      <li><a href="blues.html">Blues Jams</a></li>
+      <li><a href="stage.html" class="active">Story Time</a></li>
+      <li><a href="index.html#bread">Bread Lab</a></li>
+      <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin</a></li>
+      <li><a href="index.html#lab">The Lab</a></li>
+    </ul>
+  </nav>
+
+  <div class="ticker">
+    <span class="ticker-inner">
+      ONCE UPON A TIME &nbsp;&nbsp;&mdash;&nbsp;&nbsp; ONCE UPON A TIME &nbsp;&nbsp;&mdash;&nbsp;&nbsp; ONCE UPON A TIME &nbsp;&nbsp;&mdash;&nbsp;&nbsp; ONCE UPON A TIME &nbsp;&nbsp;&mdash;&nbsp;&nbsp; ONCE UPON A TIME &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-eyebrow">► STORY TIME — 003/005</div>
+    <h1 class="page-title">Story <em>Time</em></h1>
+    <p class="page-subtitle">Stand-up, storytelling competitions, creative writing. All of it.</p>
+  </div>
+
+  <!-- SECTION HEADER -->
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>▶ PERFORMANCES</h2>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid-wrap">
+    <div class="perf-grid">
+
+      <!-- CARD 1: MY GIRL -->
+      <div class="perf-card">
+        <div class="perf-thumb" style="cursor:default;">
+          <div class="perf-thumb-placeholder" style="background:var(--teal);">
+            <span class="thumb-icon">♪</span>
+            <span class="thumb-label">AUDIO · COMING SOON</span>
+          </div>
+        </div>
+        <div class="perf-info">
+          <div class="perf-title">My Girl</div>
+          <div class="perf-tags">
+            <span class="perf-tag win">★ MOTH SLAM WINNER</span>
+          </div>
+          <button class="notes-toggle" onclick="toggleNotes(this)">
+            ► DIRECTOR'S NOTES
+            <span class="notes-arrow">▼</span>
+          </button>
+        </div>
+        <div class="notes-content">
+          <p>This one won a Moth Story Slam, which earned me a spot in the Grand Slam — performed in front of roughly 700 people at a theater in Los Angeles. Probably the proudest I've been of anything I've written.</p>
+          <p>It's a significant improvement on an earlier DC telling. The LA version is tighter, less self-indulgent, and opens with a nerd joke that builds enough audience trust to carry them through some later moments when I'm pretty hard to root for.</p>
+          <p>The story is about a girl, a bad decision, and the specific kind of regret that only comes from knowing you're making a mistake in real time — and doing it anyway.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2: CAN A BRO GET A BRO -->
+      <div class="perf-card">
+        <div class="perf-thumb" onclick="openModal('_yJw4I5oVMA', 'Can a Bro Get a Bro?')">
+          <img
+            src="https://img.youtube.com/vi/_yJw4I5oVMA/hqdefault.jpg"
+            alt="Can a Bro Get a Bro? — James Calabrese"
+            loading="lazy"
+          >
+          <div class="play-overlay"><div class="play-btn"></div></div>
+        </div>
+        <div class="perf-info">
+          <div class="perf-title">Can a Bro Get a Bro?</div>
+          <div class="perf-tags">
+            <span class="perf-tag">DC STORYTELLING EVENT</span>
+          </div>
+          <button class="notes-toggle" onclick="toggleNotes(this)">
+            ► DIRECTOR'S NOTES
+            <span class="notes-arrow">▼</span>
+          </button>
+        </div>
+        <div class="notes-content">
+          <p>A story about friendship, loyalty, and whether the bro code holds up when it actually costs you something.</p>
+        </div>
+      </div>
+
+      <!-- CARD 3: STAR WARS — A NERD'S HOPE -->
+      <div class="perf-card">
+        <a href="https://www.youtube.com/watch?v=D40alYUMJYo" target="_blank" style="display:block;text-decoration:none;">
+          <div class="perf-thumb">
+            <img
+              src="https://img.youtube.com/vi/D40alYUMJYo/hqdefault.jpg"
+              alt="Star Wars — A Nerd's Hope"
+              loading="lazy"
+            >
+            <div class="ext-overlay"><div class="ext-btn"></div></div>
+          </div>
+        </a>
+        <div class="perf-info">
+          <div class="perf-title">Star Wars — A Nerd's Hope</div>
+          <div class="perf-tags">
+            <span class="perf-tag">DC STORYTELLING EVENT</span>
+            <span class="perf-tag">MADE INTO DOCUMENTARY FILM</span>
+          </div>
+          <button class="notes-toggle" onclick="toggleNotes(this)">
+            ► DIRECTOR'S NOTES
+            <span class="notes-arrow">▼</span>
+          </button>
+        </div>
+        <div class="notes-content">
+          <p>The one that started it all. A nerdy story from a nerd who had not yet learned to sand down the edges. Age-gated on YouTube so it lives over there — click the thumbnail to watch.</p>
+        </div>
+      </div>
+
+      <!-- CARD 4: DOG WALK DRUG BUST -->
+      <div class="perf-card">
+        <div class="perf-thumb" style="cursor:default;">
+          <div class="perf-thumb-placeholder" style="background:#5a3e1b;">
+            <span class="thumb-icon">▶</span>
+            <span class="thumb-label">VIDEO · COMING SOON</span>
+          </div>
+        </div>
+        <div class="perf-info">
+          <div class="perf-title">Dog Walk Drug Bust</div>
+          <div class="perf-tags">
+            <span class="perf-tag">IMPROVISED FIRST TELLING</span>
+          </div>
+          <button class="notes-toggle" onclick="toggleNotes(this)">
+            ► DIRECTOR'S NOTES
+            <span class="notes-arrow">▼</span>
+          </button>
+        </div>
+        <div class="notes-content">
+          <p>First told completely off the cuff at a work training event — no prep, no outline, just an audience that needed something to stay awake for. It went well enough that I polished it and took it to a Moth Story Slam in Los Angeles.</p>
+          <p>It's about a dog walk that went sideways in a way I still can't fully explain to my neighbors.</p>
+        </div>
+      </div>
+
+    </div><!-- /perf-grid -->
+  </div><!-- /grid-wrap -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
+    <div class="footer-back">
+      <a href="index.html">◄ BACK TO HOME</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 J Breezy Baby</p>
+    <p>Built with chaos & Claude</p>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal-overlay" id="videoModal" onclick="handleModalClick(event)">
+    <div class="modal-box">
+      <div class="modal-bar">
+        <span class="modal-bar-title" id="modalTitle"></span>
+        <button class="modal-close" onclick="closeModal()">✕ CLOSE</button>
+      </div>
+      <div class="modal-embed" id="modalEmbed"></div>
+    </div>
+  </div>
+
+  <script>
+    /* NAV HAMBURGER */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    /* DIRECTOR'S NOTES ACCORDION */
+    function toggleNotes(btn) {
+      const card = btn.closest('.perf-card');
+      const content = card.querySelector('.notes-content');
+      const isOpen = content.classList.contains('open');
+      content.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+    }
+
+    /* VIDEO MODAL */
+    function openModal(videoId, title) {
+      const modal = document.getElementById('videoModal');
+      const embed = document.getElementById('modalEmbed');
+      const titleEl = document.getElementById('modalTitle');
+      titleEl.textContent = title.toUpperCase();
+      embed.innerHTML = `<iframe
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
+        frameborder="0"
+        allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>`;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('videoModal');
+      const embed = document.getElementById('modalEmbed');
+      modal.classList.remove('open');
+      embed.innerHTML = ''; // stops video
+      document.body.style.overflow = '';
+    }
+
+    function handleModalClick(e) {
+      if (e.target === document.getElementById('videoModal')) {
+        closeModal();
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
+</body>
+</html>
