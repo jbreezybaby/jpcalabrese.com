@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lab — J Breezy Baby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e03c1f;
+      --cream: #f5f0e8;
+      --black: #1a1a1a;
+      --gold: #c9920a;
+      --teal: #1d9e75;
+      --cream-dark: #ede8dc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      border-bottom: 3px solid var(--black);
+      background: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .nav-links a:hover { border-color: var(--red); }
+    .nav-links a.active { border-color: var(--black); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--black);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    @media (max-width: 680px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 3px solid var(--black);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-top: 1px solid var(--black); }
+      .nav-links a { display: block; padding: 14px 32px; border-bottom: none; }
+      .nav-links a:hover { background: var(--cream-dark); }
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      padding: 11px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+      padding-left: 100%;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      border-bottom: 3px solid var(--black);
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+    }
+
+    .page-eyebrow {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+
+    .page-title {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.0;
+      margin-bottom: 16px;
+    }
+
+    .page-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .page-badge {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      padding: 12px 16px;
+      border: 3px solid var(--black);
+      text-align: center;
+      line-height: 2;
+      white-space: nowrap;
+    }
+
+    /* SECTION */
+    .section {
+      border-bottom: 3px solid var(--black);
+    }
+
+    .section-header {
+      padding: 20px 40px;
+      border-bottom: 2px solid var(--black);
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-header h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+    }
+
+    .section-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--red);
+    }
+
+    /* PROJECT CARD */
+    .project-body {
+      padding: 40px;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .project-info { flex: 1; min-width: 260px; }
+
+    .project-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.8;
+      max-width: 580px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .project-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      padding: 5px 9px;
+      border: 2px solid var(--black);
+      display: inline-block;
+      line-height: 1.4;
+    }
+
+    .project-tag.live {
+      background: var(--teal);
+      color: var(--cream);
+      border-color: var(--teal);
+    }
+
+    .project-link {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      padding: 10px 14px;
+      border: 2px solid var(--black);
+      color: var(--black);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    .project-link:hover {
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    /* IFRAME EMBED */
+    .embed-wrap {
+      border: 3px solid var(--black);
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .embed-wrap iframe {
+      width: 100%;
+      height: 680px;
+      display: block;
+      border: none;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 3px solid var(--black);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      line-height: 1.8;
+      color: var(--black);
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    .footer-back a {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 2px;
+    }
+
+    .footer-back a:hover { color: var(--red); border-color: var(--red); }
+
+    .footer-bottom {
+      border-top: 2px solid var(--black);
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: #888;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .page-hero { grid-template-columns: 1fr; padding: 32px 20px; }
+      .page-title { font-size: 36px; }
+      .section-header { padding: 16px 20px; }
+      .project-body { padding: 24px 20px; }
+      .project-meta { flex-direction: column; gap: 16px; }
+      .embed-wrap iframe { height: 520px; }
+      footer { grid-template-columns: 1fr; padding: 24px 20px; }
+      .footer-bottom { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">J<span>B</span>REEZY<br>BABY</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin</a></li>
+      <li><a href="blues.html">Blues Jams</a></li>
+      <li><a href="stage.html">Story Time</a></li>
+      <li><a href="lab.html" class="active">The Lab</a></li>
+      <li><a href="index.html#kitchen">Booze + Bread</a></li>
+    </ul>
+  </nav>
+
+  <div class="ticker">
+    <span class="ticker-inner">
+      EXPERIMENT IN PROGRESS &nbsp;&nbsp;&mdash;&nbsp;&nbsp; DO NOT TAP THE GLASS &nbsp;&nbsp;&mdash;&nbsp;&nbsp; EXPERIMENT IN PROGRESS &nbsp;&nbsp;&mdash;&nbsp;&nbsp; DO NOT TAP THE GLASS &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div>
+      <div class="page-eyebrow">► THE LAB — 005/005</div>
+      <h1 class="page-title">The <em>Lab</em></h1>
+      <p class="page-subtitle">AI-powered apps, fretboard tools, weird experiments. Ships fast.</p>
+    </div>
+    <div class="page-badge">
+      BUILDER<br>
+      ——<br>
+      CHAOTIC<br>
+      NEUTRAL
+    </div>
+  </div>
+
+  <!-- PROJECT 01: CAGED -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>🎸 MASTER THE FRETBOARD</h2>
+    </div>
+    <div class="project-body">
+      <div class="project-meta">
+        <div class="project-info">
+          <div class="project-title">CAGED System Visualizer</div>
+          <p class="project-desc">An interactive guitar fretboard tool built to solve a real problem: learning where every note lives across the neck. Pick a root note and a scale, and the fretboard lights up with the right notes, intervals, and fingering positions. Built from scratch because the existing tools weren't doing it right.</p>
+          <div class="project-tags">
+            <span class="project-tag live">● LIVE</span>
+            <span class="project-tag">GUITAR</span>
+            <span class="project-tag">FRETBOARD</span>
+            <span class="project-tag">VANILLA JS</span>
+            <span class="project-tag">BETA</span>
+          </div>
+        </div>
+        <a class="project-link" href="https://jbreezybaby.github.io/CAGED/" target="_blank">↗ OPEN STANDALONE</a>
+      </div>
+
+      <div class="embed-wrap">
+        <iframe
+          src="https://jbreezybaby.github.io/CAGED/"
+          title="Master The Fretboard — CAGED System Visualizer"
+          loading="lazy"
+          allow="fullscreen">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE COMING -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>⚗️ MORE EXPERIMENTS INCOMING</h2>
+    </div>
+    <div class="project-body">
+      <p style="font-size:15px;color:#666;font-family:'Press Start 2P',monospace;line-height:2.2;font-size:8px;">THE LAB IS ALWAYS OPEN.<br>CHECK BACK SOON.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">J<span>B</span>REEZY<br>BABY</div>
+    <div class="footer-back">
+      <a href="index.html">◄ BACK TO HOME</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 J Breezy Baby</p>
+    <p>Built with chaos & Claude</p>
+  </div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
