@@ -391,7 +391,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="https://petitpuffinplay.com" target="_blank">Petit Puffin</a></li>
       <li><a href="blues.html">Blues Jams</a></li>
-      <li><a href="stage.html">Story Time</a></li>
+      <li><a href="#" id="stageNavLink">Story Time</a></li>
       <li><a href="lab.html">The Lab</a></li>
       <li><a href="kitchen.html">Booze + Bread</a></li>
     </ul>
@@ -577,7 +577,7 @@
       });
     });
 
-    document.getElementById('stage').addEventListener('click', e => {
+    function openStoryLock(e) {
       e.preventDefault();
       pendingUrl = 'stage.html';
       hintIndex = 0;
@@ -586,7 +586,10 @@
       modal.style.display = 'flex';
       drawNedry();
       setTimeout(() => magicInput.focus(), 50);
-    });
+    }
+
+    document.getElementById('stage').addEventListener('click', openStoryLock);
+    document.getElementById('stageNavLink').addEventListener('click', openStoryLock);
 
     document.getElementById('nedryClose').addEventListener('click', () => { pendingUrl = null; modal.style.display = 'none'; });
     modal.addEventListener('click', e => { if (e.target === modal) { pendingUrl = null; modal.style.display = 'none'; } });
