@@ -460,7 +460,7 @@
         <div class="card-footer"><span class="card-rarity">&#9670;&#9670; EPIC</span><span class="card-num">002/005</span></div>
       </a>
 
-      <a class="card" href="stage.html" id="stage">
+      <a class="card" href="#" id="stage">
         <div class="card-header">
           <div class="card-name">STORY<br>TIME</div>
           <div class="card-hp">HP 91</div>
@@ -562,10 +562,12 @@
     const magicHint = document.getElementById('magicHint');
     const hints = ["nope. try again.","still no.","not even close.","ah ah ah...","hint: it's what breezy babies say.","seriously though.","you're embarrassing yourself.","nedry is judging you."];
     let hintIndex = 0;
+    let pendingUrl = null;
 
     document.querySelectorAll('.wip-card').forEach(card => {
       card.addEventListener('click', e => {
         e.preventDefault();
+        pendingUrl = null;
         hintIndex = 0;
         magicHint.textContent = '';
         magicInput.value = '';
@@ -575,16 +577,34 @@
       });
     });
 
-    document.getElementById('nedryClose').addEventListener('click', () => { modal.style.display = 'none'; });
-    modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+    document.getElementById('stage').addEventListener('click', e => {
+      e.preventDefault();
+      pendingUrl = 'stage.html';
+      hintIndex = 0;
+      magicHint.textContent = '';
+      magicInput.value = '';
+      modal.style.display = 'flex';
+      drawNedry();
+      setTimeout(() => magicInput.focus(), 50);
+    });
+
+    document.getElementById('nedryClose').addEventListener('click', () => { pendingUrl = null; modal.style.display = 'none'; });
+    modal.addEventListener('click', e => { if (e.target === modal) { pendingUrl = null; modal.style.display = 'none'; } });
 
     function checkMagicWord() {
       const val = magicInput.value.trim().toLowerCase();
       if (val === 'please' || val === 'feel the breeze baby' || val === 'breeze') {
         magicHint.style.color = '#1d9e75';
-        magicHint.textContent = '\u2713 access granted... just kidding. coming soon!';
         magicInput.value = '';
-        setTimeout(() => { modal.style.display = 'none'; magicHint.style.color = '#888'; }, 2000);
+        if (pendingUrl) {
+          magicHint.textContent = '\u2713 access granted.';
+          const dest = pendingUrl;
+          pendingUrl = null;
+          setTimeout(() => { modal.style.display = 'none'; magicHint.style.color = '#888'; window.location.href = dest; }, 1000);
+        } else {
+          magicHint.textContent = '\u2713 access granted... just kidding. coming soon!';
+          setTimeout(() => { modal.style.display = 'none'; magicHint.style.color = '#888'; }, 2000);
+        }
       } else {
         magicHint.style.color = '#e03c1f';
         magicHint.textContent = hints[Math.min(hintIndex, hints.length - 1)];
