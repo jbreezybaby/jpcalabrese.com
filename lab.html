@@ -219,28 +219,26 @@
       overflow: hidden;
       cursor: pointer;
       border-bottom: 3px solid var(--black);
+      background: #111;
     }
 
-    .app-thumb-bg {
+    /* Scaled live iframe preview */
+    .iframe-scaler {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1280px;
+      height: 720px;
+      transform-origin: top left;
+      pointer-events: none;
+    }
+
+    .iframe-scaler iframe {
       width: 100%;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .app-thumb-icon {
-      font-size: 32px;
-      line-height: 1;
-    }
-
-    .app-thumb-label {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 6px;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.1em;
+      border: none;
+      display: block;
+      pointer-events: none;
     }
 
     /* Launch overlay */
@@ -324,24 +322,23 @@
       width: calc(100% + 32px);
       margin-left: -16px;
       padding: 10px 16px;
-      background: none;
+      background: var(--red);
       border: none;
       border-top: 2px solid var(--black);
       cursor: pointer;
       font-family: 'Press Start 2P', monospace;
       font-size: 6px;
       letter-spacing: 0.08em;
-      color: var(--black);
+      color: var(--cream);
       text-align: left;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s;
     }
 
     .launch-toggle:hover {
-      background: var(--black);
-      color: var(--cream);
+      background: #c0341a;
     }
 
     /* APP MODAL */
@@ -401,13 +398,14 @@
       color: var(--cream);
       text-decoration: none;
       padding: 5px 8px;
-      border: 1.5px solid rgba(255,255,255,0.3);
-      transition: border-color 0.15s, color 0.15s;
+      background: var(--red);
+      border: 1.5px solid var(--red);
+      transition: background 0.15s, border-color 0.15s;
     }
 
     .modal-standalone:hover {
-      border-color: var(--cream);
-      color: var(--cream);
+      background: #c0341a;
+      border-color: #c0341a;
     }
 
     .modal-close {
@@ -537,9 +535,8 @@
       <!-- CARD: CAGED SYSTEM VISUALIZER -->
       <div class="perf-card">
         <div class="perf-thumb" onclick="openApp('https://jbreezybaby.github.io/CAGED/', 'CAGED System Visualizer', 'https://jbreezybaby.github.io/CAGED/')">
-          <div class="app-thumb-bg" style="background: var(--teal);">
-            <span class="app-thumb-icon">🎸</span>
-            <span class="app-thumb-label">FRETBOARD TOOL</span>
+          <div class="iframe-scaler">
+            <iframe src="https://jbreezybaby.github.io/CAGED/" title="CAGED System Visualizer preview" loading="lazy" tabindex="-1"></iframe>
           </div>
           <div class="launch-overlay"><div class="launch-btn"></div></div>
         </div>
@@ -562,9 +559,8 @@
       <!-- CARD: FMCSA EXPLORER -->
       <div class="perf-card">
         <div class="perf-thumb" onclick="openApp('https://fmcsa-explorer.vercel.app/', 'FMCSA Explorer', 'https://fmcsa-explorer.vercel.app/')">
-          <div class="app-thumb-bg" style="background: #2a4a7f;">
-            <span class="app-thumb-icon">🚛</span>
-            <span class="app-thumb-label">DATA LOOKUP TOOL</span>
+          <div class="iframe-scaler">
+            <iframe src="https://fmcsa-explorer.vercel.app/" title="FMCSA Explorer preview" loading="lazy" tabindex="-1"></iframe>
           </div>
           <div class="launch-overlay"><div class="launch-btn"></div></div>
         </div>
@@ -576,7 +572,7 @@
             <span class="perf-tag">TAILWIND</span>
             <span class="perf-tag">VERCEL</span>
           </div>
-          <p class="perf-desc">Look up any US trucking carrier by USDOT number — safety rating, fleet size, BASIC category scores. Built on FMCSA public data with a serverless proxy. Also a hands-on intro to the modern frontend stack.</p>
+          <p class="perf-desc">Look up any US trucking carrier by USDOT number — safety rating, fleet size, BASIC category scores. Built on FMCSA public data with a serverless proxy.</p>
           <button class="launch-toggle" onclick="openApp('https://fmcsa-explorer.vercel.app/', 'FMCSA Explorer', 'https://fmcsa-explorer.vercel.app/')">
             ► LAUNCH APP
             <span>▶</span>
@@ -614,6 +610,17 @@
   </div>
 
   <script>
+    /* IFRAME THUMBNAIL SCALING */
+    function scaleThumbIframes() {
+      document.querySelectorAll('.iframe-scaler').forEach(scaler => {
+        const container = scaler.closest('.perf-thumb');
+        const scale = container.offsetWidth / 1280;
+        scaler.style.transform = `scale(${scale})`;
+      });
+    }
+    scaleThumbIframes();
+    window.addEventListener('resize', scaleThumbIframes);
+
     /* NAV HAMBURGER */
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
