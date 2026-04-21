@@ -139,26 +139,22 @@
     /* PAGE HERO */
     .page-hero {
       border-bottom: 3px solid var(--black);
-      padding: 48px 40px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: end;
+      padding: 40px;
     }
 
     .page-eyebrow {
       font-family: 'Press Start 2P', monospace;
       font-size: 7px;
       color: var(--red);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       letter-spacing: 0.1em;
     }
 
     .page-title {
-      font-size: 56px;
+      font-size: 52px;
       font-weight: 700;
       line-height: 1.0;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .page-title em {
@@ -167,30 +163,17 @@
     }
 
     .page-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: #555;
       line-height: 1.7;
-      max-width: 520px;
+      max-width: 560px;
     }
 
-    .page-badge {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      padding: 12px 16px;
-      border: 3px solid var(--black);
-      text-align: center;
-      line-height: 2;
-      white-space: nowrap;
-    }
-
-    /* SECTION */
-    .section {
-      border-bottom: 3px solid var(--black);
-    }
-
+    /* SECTION HEADER */
     .section-header {
-      padding: 20px 40px;
-      border-bottom: 2px solid var(--black);
+      padding: 18px 40px;
+      border-bottom: 3px solid var(--black);
+      border-top: 3px solid var(--black);
       background: var(--black);
       display: flex;
       align-items: center;
@@ -210,87 +193,244 @@
       color: var(--red);
     }
 
-    /* PROJECT CARD */
-    .project-body {
-      padding: 40px;
+    /* GRID */
+    .grid-wrap {
+      padding: 32px 40px;
     }
 
-    .project-meta {
+    .perf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* CARD */
+    .perf-card {
+      border: 3px solid var(--black);
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      background: var(--cream);
     }
 
-    .project-info { flex: 1; min-width: 260px; }
-
-    .project-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      line-height: 1.2;
+    /* THUMBNAIL */
+    .perf-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      cursor: pointer;
+      border-bottom: 3px solid var(--black);
     }
 
-    .project-desc {
-      font-size: 15px;
-      color: #444;
-      line-height: 1.8;
-      max-width: 580px;
-    }
-
-    .project-tags {
+    .app-thumb-bg {
+      width: 100%;
+      height: 100%;
       display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-      margin-top: 14px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
     }
 
-    .project-tag {
+    .app-thumb-icon {
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .app-thumb-label {
       font-family: 'Press Start 2P', monospace;
       font-size: 6px;
-      padding: 5px 9px;
-      border: 2px solid var(--black);
-      display: inline-block;
-      line-height: 1.4;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
     }
 
-    .project-tag.live {
+    /* Launch overlay */
+    .launch-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .perf-thumb:hover .launch-overlay { opacity: 1; }
+
+    .launch-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--cream);
+      border: 3px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .launch-btn::after {
+      content: '▶';
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      color: var(--black);
+      margin-left: 3px;
+    }
+
+    /* CARD INFO */
+    .perf-info {
+      padding: 14px 16px 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .perf-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .perf-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .perf-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 5px;
+      padding: 3px 6px;
+      border: 1.5px solid var(--black);
+      line-height: 1.6;
+      display: inline-block;
+    }
+
+    .perf-tag.live {
       background: var(--teal);
       color: var(--cream);
       border-color: var(--teal);
     }
 
-    .project-link {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 6px;
-      padding: 10px 14px;
-      border: 2px solid var(--black);
-      color: var(--black);
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.15s, color 0.15s;
-      white-space: nowrap;
-      align-self: flex-start;
-      margin-top: 4px;
+    .perf-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #444;
+      margin-bottom: 14px;
     }
 
-    .project-link:hover {
+    /* LAUNCH BUTTON */
+    .launch-toggle {
+      margin-top: auto;
+      width: calc(100% + 32px);
+      margin-left: -16px;
+      padding: 10px 16px;
+      background: none;
+      border: none;
+      border-top: 2px solid var(--black);
+      cursor: pointer;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .launch-toggle:hover {
       background: var(--black);
       color: var(--cream);
     }
 
-    /* IFRAME EMBED */
-    .embed-wrap {
-      border: 3px solid var(--black);
-      overflow: hidden;
-      background: var(--black);
+    /* APP MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 26, 26, 0.95);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
     }
 
-    .embed-wrap iframe {
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
       width: 100%;
-      height: 680px;
+      max-width: 1100px;
+      border: 3px solid var(--cream);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-bar {
+      background: var(--black);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--cream);
+      flex-shrink: 0;
+    }
+
+    .modal-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .modal-bar-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+    }
+
+    .modal-standalone {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: var(--cream);
+      text-decoration: none;
+      padding: 5px 8px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .modal-standalone:hover {
+      border-color: var(--cream);
+      color: var(--cream);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      color: var(--cream);
+      padding: 2px 6px;
+      transition: color 0.15s;
+    }
+
+    .modal-close:hover { color: var(--red); }
+
+    .modal-embed {
+      background: var(--black);
+      height: 72vh;
+    }
+
+    .modal-embed iframe {
+      width: 100%;
+      height: 100%;
       display: block;
       border: none;
     }
@@ -339,15 +479,19 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .page-hero { grid-template-columns: 1fr; padding: 32px 20px; }
+    @media (max-width: 900px) {
+      .perf-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .page-hero { padding: 28px 20px; }
       .page-title { font-size: 36px; }
       .section-header { padding: 16px 20px; }
-      .project-body { padding: 24px 20px; }
-      .project-meta { flex-direction: column; gap: 16px; }
-      .embed-wrap iframe { height: 520px; }
+      .grid-wrap { padding: 24px 20px; }
+      .perf-grid { grid-template-columns: 1fr; }
       footer { grid-template-columns: 1fr; padding: 24px 20px; }
       .footer-bottom { padding: 12px 20px; }
+      .modal-embed { height: 60vh; }
     }
   </style>
 </head>
@@ -375,95 +519,73 @@
 
   <!-- PAGE HERO -->
   <div class="page-hero">
-    <div>
-      <div class="page-eyebrow">► THE LAB — 005/005</div>
-      <h1 class="page-title">The <em>Lab</em></h1>
-      <p class="page-subtitle">AI-powered apps, fretboard tools, weird experiments. Ships fast.</p>
-    </div>
-    <div class="page-badge">
-      BUILDER<br>
-      ——<br>
-      CHAOTIC<br>
-      NEUTRAL
-    </div>
+    <div class="page-eyebrow">► THE LAB — 005/005</div>
+    <h1 class="page-title">The <em>Lab</em></h1>
+    <p class="page-subtitle">AI-powered apps, fretboard tools, weird experiments. Ships fast. Click any card to launch.</p>
   </div>
 
-  <!-- PROJECT 01: CAGED -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>🎸 MASTER THE FRETBOARD</h2>
-    </div>
-    <div class="project-body">
-      <div class="project-meta">
-        <div class="project-info">
-          <div class="project-title">CAGED System Visualizer</div>
-          <p class="project-desc">An interactive guitar fretboard tool built to solve a real problem: learning where every note lives across the neck. Pick a root note and a scale, and the fretboard lights up with the right notes, intervals, and fingering positions. Built from scratch because the existing tools weren't doing it right.</p>
-          <div class="project-tags">
-            <span class="project-tag live">● LIVE</span>
-            <span class="project-tag">GUITAR</span>
-            <span class="project-tag">FRETBOARD</span>
-            <span class="project-tag">VANILLA JS</span>
-            <span class="project-tag">BETA</span>
+  <!-- SECTION HEADER -->
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>⚗️ EXPERIMENTS</h2>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid-wrap">
+    <div class="perf-grid">
+
+      <!-- CARD: CAGED SYSTEM VISUALIZER -->
+      <div class="perf-card">
+        <div class="perf-thumb" onclick="openApp('https://jbreezybaby.github.io/CAGED/', 'CAGED System Visualizer', 'https://jbreezybaby.github.io/CAGED/')">
+          <div class="app-thumb-bg" style="background: var(--teal);">
+            <span class="app-thumb-icon">🎸</span>
+            <span class="app-thumb-label">FRETBOARD TOOL</span>
           </div>
+          <div class="launch-overlay"><div class="launch-btn"></div></div>
         </div>
-        <a class="project-link" href="https://jbreezybaby.github.io/CAGED/" target="_blank">↗ OPEN STANDALONE</a>
-      </div>
-
-      <div class="embed-wrap">
-        <iframe
-          src="https://jbreezybaby.github.io/CAGED/"
-          title="Master The Fretboard — CAGED System Visualizer"
-          loading="lazy"
-          allow="fullscreen">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECT 02: FMCSA EXPLORER -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>🚛 TRUCKING SAFETY LOOKUP</h2>
-    </div>
-    <div class="project-body">
-      <div class="project-meta">
-        <div class="project-info">
-          <div class="project-title">FMCSA Explorer</div>
-          <p class="project-desc">A carrier safety lookup tool built on FMCSA public data — the federal database covering every commercial trucking carrier in the US. Enter any USDOT number to pull up carrier identity, operating status, fleet size, safety rating, and BASIC category scores. Built as a hands-on intro to modern frontend development: React, Vite, Tailwind, and a Vercel serverless function to proxy around a CORS restriction.</p>
-          <div class="project-tags">
-            <span class="project-tag live">● LIVE</span>
-            <span class="project-tag">REACT</span>
-            <span class="project-tag">TAILWIND</span>
-            <span class="project-tag">VERCEL</span>
-            <span class="project-tag">DATA</span>
+        <div class="perf-info">
+          <div class="perf-title">CAGED System Visualizer</div>
+          <div class="perf-tags">
+            <span class="perf-tag live">● LIVE</span>
+            <span class="perf-tag">GUITAR</span>
+            <span class="perf-tag">VANILLA JS</span>
+            <span class="perf-tag">BETA</span>
           </div>
+          <p class="perf-desc">Pick a root note and a scale — the fretboard lights up with notes, intervals, and fingering positions. Built from scratch because the existing tools weren't doing it right.</p>
+          <button class="launch-toggle" onclick="openApp('https://jbreezybaby.github.io/CAGED/', 'CAGED System Visualizer', 'https://jbreezybaby.github.io/CAGED/')">
+            ► LAUNCH APP
+            <span>▶</span>
+          </button>
         </div>
-        <a class="project-link" href="https://fmcsa-explorer.vercel.app/" target="_blank">↗ OPEN STANDALONE</a>
       </div>
 
-      <div class="embed-wrap">
-        <iframe
-          src="https://fmcsa-explorer.vercel.app/"
-          title="FMCSA Explorer — Carrier Safety Lookup"
-          loading="lazy"
-          allow="fullscreen">
-        </iframe>
+      <!-- CARD: FMCSA EXPLORER -->
+      <div class="perf-card">
+        <div class="perf-thumb" onclick="openApp('https://fmcsa-explorer.vercel.app/', 'FMCSA Explorer', 'https://fmcsa-explorer.vercel.app/')">
+          <div class="app-thumb-bg" style="background: #2a4a7f;">
+            <span class="app-thumb-icon">🚛</span>
+            <span class="app-thumb-label">DATA LOOKUP TOOL</span>
+          </div>
+          <div class="launch-overlay"><div class="launch-btn"></div></div>
+        </div>
+        <div class="perf-info">
+          <div class="perf-title">FMCSA Explorer</div>
+          <div class="perf-tags">
+            <span class="perf-tag live">● LIVE</span>
+            <span class="perf-tag">REACT</span>
+            <span class="perf-tag">TAILWIND</span>
+            <span class="perf-tag">VERCEL</span>
+          </div>
+          <p class="perf-desc">Look up any US trucking carrier by USDOT number — safety rating, fleet size, BASIC category scores. Built on FMCSA public data with a serverless proxy. Also a hands-on intro to the modern frontend stack.</p>
+          <button class="launch-toggle" onclick="openApp('https://fmcsa-explorer.vercel.app/', 'FMCSA Explorer', 'https://fmcsa-explorer.vercel.app/')">
+            ► LAUNCH APP
+            <span>▶</span>
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- MORE COMING -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>⚗️ MORE EXPERIMENTS INCOMING</h2>
-    </div>
-    <div class="project-body">
-      <p style="font-size:15px;color:#666;font-family:'Press Start 2P',monospace;line-height:2.2;font-size:8px;">THE LAB IS ALWAYS OPEN.<br>CHECK BACK SOON.</p>
-    </div>
-  </section>
+    </div><!-- /perf-grid -->
+  </div><!-- /grid-wrap -->
 
   <!-- FOOTER -->
   <footer>
@@ -477,7 +599,22 @@
     <p>Built with chaos & Claude</p>
   </div>
 
+  <!-- APP MODAL -->
+  <div class="modal-overlay" id="appModal" onclick="handleModalClick(event)">
+    <div class="modal-box">
+      <div class="modal-bar">
+        <div class="modal-bar-left">
+          <span class="modal-bar-title" id="modalTitle"></span>
+          <a class="modal-standalone" id="modalStandalone" href="#" target="_blank">↗ OPEN STANDALONE</a>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕ CLOSE</button>
+      </div>
+      <div class="modal-embed" id="modalEmbed"></div>
+    </div>
+  </div>
+
   <script>
+    /* NAV HAMBURGER */
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
@@ -489,6 +626,37 @@
         hamburger.classList.remove('open');
         navLinks.classList.remove('open');
       });
+    });
+
+    /* APP MODAL */
+    function openApp(src, title, standaloneUrl) {
+      const modal = document.getElementById('appModal');
+      const embed = document.getElementById('modalEmbed');
+      const titleEl = document.getElementById('modalTitle');
+      const standaloneEl = document.getElementById('modalStandalone');
+      titleEl.textContent = title.toUpperCase();
+      standaloneEl.href = standaloneUrl;
+      embed.innerHTML = `<iframe src="${src}" title="${title}" allow="fullscreen"></iframe>`;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('appModal');
+      const embed = document.getElementById('modalEmbed');
+      modal.classList.remove('open');
+      embed.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    function handleModalClick(e) {
+      if (e.target === document.getElementById('appModal')) {
+        closeModal();
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
     });
   </script>
 
